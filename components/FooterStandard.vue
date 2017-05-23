@@ -336,6 +336,7 @@ footer.standard {
         }
         > .message {
           @include font-serif;
+          @include font-smoothing;
           font-weight: bold;
           font-size: 1.125rem;
           color: rgba(white, 0.75); //color-nice-grey;
