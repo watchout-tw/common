@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import common from '../main'
+import main from '../main'
 
 export default {
   name: 'footer-standard',
   data: function() {
     return {
-      DataStore: common.DataStore
+      DataStore: main.DataStore
     }
   }
 }
