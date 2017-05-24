@@ -36,7 +36,7 @@ var channels = {
   edu:   new Channel('edu', 212, 'https://edu.watchout.tw/', '公民學院'),
   maa:   new Channel('maa', 132, 'https://maa.watchout.tw/', '草漫'),
   woo:   new Channel('woo', 154, 'https://woo.watchout.tw/', '沃影音'),
-  ly:    new Channel('ly', 212, 'https://ly.watchout.tw/', '立委履歷'),
+  c0ngress: new Channel('c0ngress', 212, 'https://c0ngress.watchout.tw/', '立委履歷'),
   watchout: new Channel('watchout', 274, links.home, '沃草')
 };
 

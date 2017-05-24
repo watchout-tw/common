@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import main from '../main'
+import main from '../../main'
 
 var social = [
   {
@@ -185,11 +185,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../styles/resources';
+@import '../../styles/resources';
 
 // Footer
 footer.standard {
   margin-top: 8rem;
+  z-index: 1031;
 
   > .land {
     position: relative;
