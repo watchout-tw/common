@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import main from '../../main'
+import main from '../../index'
 
 var social = [
   {
