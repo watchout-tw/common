@@ -26,11 +26,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .navbar-button {
   display: block;
   width: 60px;
   height: 64px;
+  &:hover {
+    background: rgba(white, 0.25);
+  }
 }
 #navbar-identity {
   position: absolute;
