@@ -1,5 +1,5 @@
 <template>
-<div id="modal-auth" class="modal">
+<div id="modal-auth"  class="modal">
   <div class="modal-dialog">
     <div class="accordion" id="modal-auth-accordion">
       <div class="card">
@@ -41,21 +41,22 @@
 </template>
 
 <script>
-import common from 'common'
+import dataStore from '../../lib/dataStore'
 
 export default {
   name: 'modal-auth',
-  data() {
+  props: ['modalOpened'],
+  data () {
     return {
-      DataStore: common.DataStore
+      DataStore: dataStore
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import '~common/styles/resources';
-@import '~common/styles/main';
+@import '../../../styles/resources';
+@import '../../../styles/main';
 
 input[type="text"],
 input[type="email"],

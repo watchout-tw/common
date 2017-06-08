@@ -7,11 +7,11 @@
 <script>
 export default {
   name: 'navigation-simple',
-  mounted() {
-    console.log('#' + this.channel.id);
-    console.log('Navigation initiated.');
+  mounted () {
+    console.log('#' + this.channel.id)
+    console.log('Navigation initiated.')
   },
-  data() {
+  data () {
     return {
       channel: this.$parent.$data.channel
     }

@@ -36,26 +36,26 @@
 </template>
 
 <script>
-import main from '../../index'
+import dataStore from '../../lib/dataStore'
 
 var social = [
   {
     type: 'facebook',
     image: 'https://graph.facebook.com/watchout.tw/picture?type=large',
     message: '追蹤我們的最新動態！',
-    link: 'https://facebook.com/watchout.tw/',
+    link: 'https://facebook.com/watchout.tw/'
   },
   {
     type: 'LINE',
     image: 'https://watchout.tw/asset/social/LINE/goodfriend.png',
     message: '阿草好朋友',
-    link: 'https://store.line.me/stickershop/product/1024870/zh-Hant',
+    link: 'https://store.line.me/stickershop/product/1024870/zh-Hant'
   },
   {
     type: 'LINE',
     image: 'https://watchout.tw/asset/social/LINE/goodcitizen.png',
     message: '阿草督督好',
-    link: 'https://store.line.me/stickershop/product/1224270/zh-Hant',
+    link: 'https://store.line.me/stickershop/product/1224270/zh-Hant'
   }
 ]
 var cluster = [
@@ -64,128 +64,128 @@ var cluster = [
     links: [
       {
         title: '國會無雙',
-        link: 'https://musou.tw/',
+        link: 'https://musou.tw/'
       },
       {
         title: '給問擂台',
-        link: 'https://ask.watchout.tw/',
+        link: 'https://ask.watchout.tw/'
       },
       {
         title: '公民學院',
-        link: 'https://citizenedu.tw/',
-      },
-    ],
+        link: 'https://citizenedu.tw/'
+      }
+    ]
   },
   {
     title: '關於沃草',
     links: [
       {
         title: '2014 透明報告',
-        link: main.DataStore.links.home + 'transparency/2014',
+        link: dataStore.links.home + 'transparency/2014'
       },
       {
         title: '歷年影響力報告',
-        link: main.DataStore.links.home + 'impact',
+        link: dataStore.links.home + 'impact'
       },
       {
         title: '聯絡我們',
-        link: main.DataStore.links.home + 'contact',
+        link: dataStore.links.home + 'contact'
       },
       {
         title: '授權條款',
-        link: main.DataStore.links.home + 'license',
-      },
-    ],
+        link: dataStore.links.home + 'license'
+      }
+    ]
   }
 ]
 var trees = [
   {
     type: 'tree',
     name: 'deliberate',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'tree',
     name: 'discover',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'tree',
     name: 'investigate',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'farmer',
     name: 'tangerine',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'farmer',
     name: 'green',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'farmer',
     name: 'brown',
-    filetype: 'png',
+    filetype: 'png'
   },
   {
     type: 'tree',
     name: 'sprout',
-    filetype: 'png',
+    filetype: 'png'
   }
 ]
 
 export default {
   name: 'footer-standard',
-  data() {
+  data () {
     return {
-      DataStore: main.DataStore,
+      DataStore: dataStore,
       social: social,
       cluster: cluster,
       trees: trees
     }
   },
   methods: {
-    patchCount: function() {
-      return 4 + Math.round(Math.random()*2);
+    patchCount: function () {
+      return 4 + Math.round(Math.random() * 2)
     },
-    patchSize: function() {
-      return Math.random() > 0.5 ? 'big' : 'small';
+    patchSize: function () {
+      return Math.random() > 0.5 ? 'big' : 'small'
     },
-    patchStyles: function(i) {
+    patchStyles: function (i) {
       return {
-        transform: 'translateX(' + (Math.round(Math.random())*2 - 1)*Math.round(Math.random()*16) + 'rem)',
-      };
+        transform: 'translateX(' + (Math.round(Math.random()) * 2 - 1) * Math.round(Math.random() * 16) + 'rem)'
+      }
     },
-    getTreeAssetURL: function(tree) {
-      return this.DataStore.links.home + 'asset/footer/' + tree.type + '/' + tree.name + '.' + tree.filetype;
+    getTreeAssetURL: function (tree) {
+      return this.DataStore.links.home + 'asset/footer/' + tree.type + '/' + tree.name + '.' + tree.filetype
     },
-    getTreeClasses: function(tree) {
-      return [tree.type, tree.type + '-' + tree.name];
+    getTreeClasses: function (tree) {
+      return [tree.type, tree.type + '-' + tree.name]
     }
   },
   computed: {
-    cptSocialGroups: function() {
-      var arr = this.social;
-      var result = [];
-      var types = {};
-      for(var i = 0; i < arr.length; i++) {
-        var cur = arr[i];
-        if(!(cur.type in types)) {
-          types[cur.type] = {type: cur.type, items: []};
-          result.push(types[cur.type]);
+    cptSocialGroups: function () {
+      var arr = this.social
+      var result = []
+      var types = {}
+      for (var i = 0; i < arr.length; i++) {
+        var cur = arr[i]
+        if (!(cur.type in types)) {
+          types[cur.type] = {type: cur.type, items: []}
+          result.push(types[cur.type])
         }
-        types[cur.type].items.push(cur);
+        types[cur.type].items.push(cur)
       }
-      return result;
+      return result
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import '../../styles/resources';
+@import '../../../styles/resources';
 
 // Footer
 footer.standard {
