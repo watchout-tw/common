@@ -14,18 +14,18 @@ var currentChannel = dataStore.channels.park
 
 export default {
   name: 'navigation-with-identity',
-  mounted () {
+  mounted() {
     console.log('#' + this.channel.id)
     console.log('Navigation with identity initiated.')
   },
-  data () {
+  data() {
     return {
       channel: currentChannel,
       modalOpened: false
     }
   },
   methods: {
-    toggleModal () {
+    toggleModal() {
       var $ = global.$
       $('#modal-auth').modal('show')
     }
@@ -35,7 +35,6 @@ export default {
 
 <style lang="scss">
 @import '../../styles/resources';
-@import '../../styles/main';
 
 input[type="text"],
 input[type="email"],

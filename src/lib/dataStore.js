@@ -5,7 +5,7 @@ var links = {
 }
 
 class Channel {
-  constructor (id, width, home, name) {
+  constructor(id, width, home, name) {
     this.id = id
     this.name = name
     this.classes = {
@@ -46,4 +46,3 @@ export default {
   links: links,
   channels: channels
 }
-

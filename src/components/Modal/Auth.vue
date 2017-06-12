@@ -46,7 +46,7 @@ import dataStore from '../../lib/dataStore'
 export default {
   name: 'modal-auth',
   props: ['modalOpened'],
-  data () {
+  data() {
     return {
       DataStore: dataStore
     }
@@ -56,7 +56,6 @@ export default {
 
 <style lang="scss">
 @import '../../styles/resources';
-@import '../../styles/main';
 
 input[type="text"],
 input[type="email"],

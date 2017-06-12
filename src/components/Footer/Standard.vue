@@ -138,7 +138,7 @@ var trees = [
 
 export default {
   name: 'footer-standard',
-  data () {
+  data() {
     return {
       DataStore: dataStore,
       social: social,
@@ -147,26 +147,26 @@ export default {
     }
   },
   methods: {
-    patchCount: function () {
+    patchCount: function() {
       return 4 + Math.round(Math.random() * 2)
     },
-    patchSize: function () {
+    patchSize: function() {
       return Math.random() > 0.5 ? 'big' : 'small'
     },
-    patchStyles: function (i) {
+    patchStyles: function(i) {
       return {
         transform: 'translateX(' + (Math.round(Math.random()) * 2 - 1) * Math.round(Math.random() * 16) + 'rem)'
       }
     },
-    getTreeAssetURL: function (tree) {
-      return this.DataStore.links.home + 'asset/footer/' + tree.type + '/' + tree.name + '.' + tree.filetype
+    getTreeAssetURL: function(tree) {
+      return require('./assets/' + tree.type + '/' + tree.name + '.' + tree.filetype)
     },
-    getTreeClasses: function (tree) {
+    getTreeClasses: function(tree) {
       return [tree.type, tree.type + '-' + tree.name]
     }
   },
   computed: {
-    cptSocialGroups: function () {
+    cptSocialGroups: function() {
       var arr = this.social
       var result = []
       var types = {}
@@ -207,7 +207,7 @@ footer.standard {
     }
     > .green {
       height: 14rem;
-      background-image: url(https://watchout.tw/asset/footer/land/grass.png);
+      background-image: url(assets/land/grass.png);
       background-repeat: repeat-x;
     }
     > .soil {
@@ -217,11 +217,11 @@ footer.standard {
       }
       > .light {
         background-color: $color-soil-light;
-        background-image: url(https://watchout.tw/asset/footer/land/soil/light.png);
+        background-image: url(assets/land/soil/light.png);
       }
       > .dark {
         background-color: $color-soil-dark;
-        background-image: url(https://watchout.tw/asset/footer/land/soil/dark.png);
+        background-image: url(assets/land/soil/dark.png);
       }
       > .deep {
         background-color: $color-soil-deep;
@@ -246,12 +246,12 @@ footer.standard {
           &.big {
             width: 1.75rem;
             height: 0.875rem;
-            background-image: url(https://watchout.tw/asset/footer/grass/big.png);
+            background-image: url(assets/grass/big.png);
           }
           &.small {
             width: 0.75rem;
             height: 0.5rem;
-            background-image: url(https://watchout.tw/asset/footer/grass/small.png);
+            background-image: url(assets/grass/small.png);
           }
         }
       }
@@ -340,16 +340,15 @@ footer.standard {
           @include font-smoothing;
           font-weight: bold;
           font-size: 1.125rem;
-          color: rgba(white, 0.75); //color-nice-grey;
-          //ransform: translate(2rem, -0.5rem) rotate(-15deg);
+          color: rgba(white, 0.75);
         }
       }
 
       &[type="facebook"] > .link > .image > .type {
-        background-image: url(https://watchout.tw/asset/social/facebook/round.png);
+        background-image: url(assets/social/facebook/round.png);
       }
       &[type="LINE"] > .link > .image > .type {
-        background-image: url(https://watchout.tw/asset/social/LINE/round.png);
+        background-image: url(assets/social/LINE/round.png);
       }
     }
   }
@@ -360,7 +359,7 @@ footer.standard {
     > .group {
       margin: 0 2rem;
       > .item {
-        color: rgba(white, 0.75); //$color-nice-grey;
+        color: rgba(white, 0.75);
         text-align: left;
       }
     }
