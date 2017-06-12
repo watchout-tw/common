@@ -33,6 +33,7 @@
           <div class="card dark">
             <div class="card-body">
               <div class="padding">
+                <label class="text-color-park">我忘記密碼了。</label>
                 <label class="text-color-park">你在找Facebook登入嗎？</label>
               </div>
             </div>
