@@ -68,9 +68,9 @@ export default {
 @import '../../styles/resources';
 
 .accordion > .card {
-  background: rgba($color-park, 0.25);
-}
-.accordion > .card.dark {
-  background: rgba($color-park, 0.5);
+  background: rgba($color-park, 0.16);
+  &.dark {
+    background: rgba($color-park, 0.32);
+  }
 }
 </style>

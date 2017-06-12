@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <NavigationWithIdentity :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
+  <NavigationWithIdentity :isAuthenticated="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
   <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown"></ModalAuth>
   <FooterStandard></FooterStandard>
 </div>
@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      isAuthenticated: false,
       modalAuthIsShown: false
     }
   }
