@@ -140,7 +140,7 @@ export default {
   name: 'footer-standard',
   data() {
     return {
-      DataStore: dataStore,
+      dataStore: dataStore,
       social: social,
       cluster: cluster,
       trees: trees

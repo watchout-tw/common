@@ -1,10 +1,9 @@
-@import 'resources';
+/* Main */
+// General override
 
-/* General override */
 body {
   font-size: 16px;
 }
-
 button, input, optgroup, select, textarea {
   font-family: $font-sans-serif;
   &:focus {
@@ -116,7 +115,147 @@ a.a-block {
   padding: 0;
 }
 
-/* Watchout Commons-specific additional styles */
+// Form
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: none;
+  border: none;
+  border-bottom: 2px $color-border-grey solid;
+  line-height: 1.75;
+  padding: 0;
+  margin: 0;
+
+  &.full-width {
+    width: 100%;
+  }
+}
+button {
+  background: $color-generic-grey;
+  border: 2px $color-border-grey solid;
+  border-radius: 2px;
+  line-height: 1;
+  padding: 0.75rem;
+  cursor: pointer;
+
+  &.small {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+}
+input + button {
+  margin-left: 0.5rem;
+}
+.field {
+  margin: 0.5rem 0;
+  &:first-of-type {
+    margin: 0 0 0.5rem;
+  }
+  &:last-of-type {
+    margin: 0.5rem 0 0;
+  }
+}
+
+// Checkbox
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  -webkit-transition: .15s;
+  background-color: rgba($color-generic-grey, 0.25);
+  border: 2px $color-border-grey solid;
+  border-radius: 2px;
+}
+input[type="checkbox"]:checked {
+  background-color: $color-generic-grey;
+}
+input[type="checkbox"]:before,
+input[type="checkbox"]:checked:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.25rem;
+  text-align: center;
+  color: black;
+  @include font-monospace;
+}
+input[type="checkbox"]:checked:before {
+  content: 'V';
+}
+
+// Checkbox + label
+.form-check-label {
+  > * {
+    vertical-align: middle;
+  }
+  > input[type="checkbox"] {
+    margin-right: 0.25rem;
+  }
+}
+
+// Accordion
+.accordion {
+  > .card {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 1rem;
+    > .card-head {
+      padding: 1rem 0;
+    }
+    > .card-body {
+      > .padding {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+// Modal
+.modal-mask {
+  display: table;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(white, 0.92);
+  transition: opacity .3s ease;
+
+  > .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+
+    > .modal-dialog {
+      width: 18rem;
+      margin: 0 auto;
+      @include shadow;
+      transition: all .3s ease;
+    }
+  }
+}
+
+// Vue transition effect
+.modal-enter {
+  opacity: 0;
+  .modal-dialog {
+    @include transform(scale(1.1));
+  }
+}
+.modal-leave-active {
+  opacity: 0;
+  .modal-dialog {
+    @include transform(scale(1.1));
+  }
+}
+
+// Watchout Commons-specific additional styles
 // following Bootstrap convention
 
 .text-color-park {
