@@ -185,7 +185,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../styles/resources';
+@import '../../styles/resources';
 
 // Footer
 footer.standard {

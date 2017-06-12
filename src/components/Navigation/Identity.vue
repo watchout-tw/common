@@ -34,8 +34,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../styles/resources';
-@import '../../../styles/main';
+@import '../../styles/resources';
+@import '../../styles/main';
 
 input[type="text"],
 input[type="email"],
