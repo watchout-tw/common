@@ -5,6 +5,9 @@ import Auth from './components/Modal/Auth'
 import App from './App'
 
 global.$ = window.jQuery = window.$ = require('jquery')
+global.Tether = require('tether')
+global.Bootstrap = require('bootstrap')
+
 Vue.config.productionTip = false
 
 Vue.component('modal-auth', Auth)
