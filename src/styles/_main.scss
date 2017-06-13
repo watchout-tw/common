@@ -110,15 +110,17 @@ a.a-block {
 }
 
 // Navbar
-.navbar, .navbar-brand {
+.navbar,
+.navbar-brand {
   margin: 0;
   padding: 0;
 }
 
 // Form
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+// with extra condition to avoid Element.io input components
+input[type="text"]:not([class^="el"]),
+input[type="email"]:not([class^="el"]),
+input[type="password"]:not([class^="el"]) {
   background: none;
   border: none;
   border-bottom: 2px $color-border-grey solid;
@@ -157,7 +159,7 @@ input + button {
 }
 
 // Checkbox
-input[type="checkbox"] {
+input[type="checkbox"]:not([class^="el"]) {
   -webkit-appearance: none;
   cursor: pointer;
   height: 1.5rem;
