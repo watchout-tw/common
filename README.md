@@ -57,7 +57,7 @@ module.exports = {
 
 ## Use common in a Watchout front-end repo
 
-### Javascript
+### JavaScript libraries
 
 ``` js
 import $ from 'jquery'
