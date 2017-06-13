@@ -19,7 +19,13 @@ npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
 ### `/config/index.js`
 
 ``` js
-autoOpenBrowser: false
+module.exports = {
+  ...
+  dev: {
+    ...
+    autoOpenBrowser: false
+  }
+}
 ```
 
 ### `/eslintrc.js`
