@@ -16,6 +16,19 @@ npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
 
 ## Customize
 
+### `package.json`
+
+```js
+{
+  scripts: {
+    "update": "npm uninstall common; npm i",
+    "dev": "node build/dev-server.js",
+    "dev+": "npm uninstall common; npm i; node build/dev-server.js",
+    ...
+  }
+}
+```
+
 ### `/config/index.js`
 
 ``` js
@@ -70,7 +83,7 @@ import dataStore from 'common/src/lib/dataStore'
 
 ``` bash
 # install dependencies
-npm install
+npm i
 
 # serve with hot reload at localhost:8080
 npm run dev
