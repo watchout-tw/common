@@ -18,9 +18,9 @@ npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
 
 ### `package.json`
 
-```js
+``` json
 {
-  scripts: {
+  "scripts": {
     "update": "npm uninstall common; npm i",
     "dev": "node build/dev-server.js",
     "dev+": "npm uninstall common; npm i; node build/dev-server.js",
