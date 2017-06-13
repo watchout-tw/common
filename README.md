@@ -64,6 +64,7 @@ import $ from 'jquery'
 global.$ = window.jQuery = window.$ = require('jquery')
 global.Tether = require('tether')
 global.Bootstrap = require('bootstrap')
+
 import axios from 'axios'
 ```
 
