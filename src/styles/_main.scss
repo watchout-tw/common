@@ -118,9 +118,9 @@ a.a-block {
 
 // Form
 // with extra condition to avoid Element.io input components
-input[type="text"]:not([class^="el"]),
-input[type="email"]:not([class^="el"]),
-input[type="password"]:not([class^="el"]) {
+input[type='text']:not([class^="el"]),
+input[type='email']:not([class^="el"]),
+input[type='password']:not([class^="el"]) {
   background: none;
   border: none;
   border-bottom: 2px $color-border-grey solid;
@@ -159,7 +159,7 @@ input + button {
 }
 
 // Checkbox
-input[type="checkbox"]:not([class^="el"]) {
+input[type='checkbox']:not([class^="el"]) {
   -webkit-appearance: none;
   cursor: pointer;
   height: 1.5rem;
