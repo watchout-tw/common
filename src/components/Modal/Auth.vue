@@ -13,7 +13,9 @@
                 <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" style="width: 12.5rem;" /><button class="small">隨機</button></div>
                 <div class="field"><input type="email" name="email" placeholder="Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" placeholder="密碼" class="full-width" /></div>
-                <div class="field d-flex justify-content-between align-items-center"><button>註冊</button><label class="form-check-label"><input type="checkbox"><span>我同意使用條款</span></label></div>
+                <div class="field d-flex justify-content-between align-items-center">
+                  <button v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox"><span>我同意使用條款</span></label>
+                </div>
               </div>
             </div>
           </div>
@@ -24,9 +26,9 @@
             </a>
             <div class="card-body collapse" id="form-login">
               <div class="padding">
-                <div class="field"><input type="text" name="id-or-email" placeholder="草民代號或Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" placeholder="密碼" class="full-width" /></div>
-                <div class="field"><button>登入</button></div>
+                <div class="field"><input type="text" name="id-or-email" v-model="account" placeholder="草民代號或Email" class="full-width" /></div>
+                <div class="field"><input type="password" name="password" v-model="password" placeholder="密碼" class="full-width" /></div>
+                <div class="field"><button v-on:click="login">登入</button></div>
               </div>
             </div>
           </div>
@@ -46,19 +48,41 @@
 </template>
 
 <script>
+import axios from 'axios'
 import dataStore from '../../lib/dataStore'
+
+axios.defaults.baseURL = 'https://apidev.watchout.tw'
 
 export default {
   name: 'modal-auth',
   props: ['modalAuthIsShown'],
   data() {
     return {
-      dataStore: dataStore
+      dataStore: dataStore,
+      account: '',
+      password: ''
     }
   },
   methods: {
-    toggleModalAuth() {
+    toggleModalAuth: function() {
       this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
+    },
+    register: function() {
+
+    },
+    login: function() {
+      if (!this.account || !this.password) {
+        alert('plz enter account n password')
+        return
+      }
+      // Should create a RESTful service to handle
+      var loginObj = /^.+@.+$/.test(this.account) ? { email: this.account } : { handle: this.account }
+      loginObj.password = this.password
+      axios.post('/login', loginObj).then(response => {
+        localStorage.setItem('watchout-token', response.token)
+      }, response => {
+        console.log(response.message)
+      })
     }
   }
 }
