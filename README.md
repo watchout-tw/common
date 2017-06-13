@@ -14,7 +14,7 @@ npm install path/to/watchout-tw/common --save-dev
 npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
 ```
 
-## Customize
+## Customize a Watchout front-end repo
 
 ### `package.json`
 
@@ -55,7 +55,9 @@ module.exports = {
 }
 ```
 
-## Use common JavaScript libraries
+## Use common in a Watchout front-end repo
+
+### Javascript
 
 ``` js
 import $ from 'jquery'
@@ -65,13 +67,13 @@ global.Bootstrap = require('bootstrap')
 import axios from 'axios'
 ```
 
-## Use common dataStore
+### Common dataStore
 
 ``` js
 import dataStore from 'common/src/lib/dataStore'
 ```
 
-## Use common SCSS resources
+### Common SCSS resources
 
 > with `<style lang="scss">`
 
@@ -79,20 +81,14 @@ import dataStore from 'common/src/lib/dataStore'
 @import '~common/src/styles/resources';
 ```
 
-## Build Setup
+## How to build & test common resources in this repo
 
 ``` bash
 # install dependencies
 npm i
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:4200
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 
 # run unit tests
 npm run unit
