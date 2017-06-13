@@ -1,6 +1,64 @@
 # common
 
-> A Vue.js project
+> A common library for all of Watchout Commons.
+
+## How to initialize a Watchout front-end repo with vue-cli
+
+``` bash
+# scaffold a new vue project with vue-cli
+vue init webpack [project_name]
+
+# add modules to project
+npm install node-sass sass-loader --save-dev
+npm install path/to/watchout-tw/common --save-dev
+npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
+```
+
+## Customize
+
+### `/config/index.js`
+
+``` js
+autoOpenBrowser: false
+```
+
+### `/eslintrc.js`
+
+``` js
+module.exports = {
+  ...
+  rules: {
+    ...
+    'space-before-function-paren': 0,
+    'keyword-spacing': 0,
+    'no-new': 0
+  }
+}
+```
+
+## Use common JavaScript libraries
+
+``` js
+import $ from 'jquery'
+global.$ = window.jQuery = window.$ = require('jquery')
+global.Tether = require('tether')
+global.Bootstrap = require('bootstrap')
+import axios from 'axios'
+```
+
+## Use common dataStore
+
+``` js
+import dataStore from 'common/src/lib/dataStore'
+```
+
+## Use common SCSS resources
+
+> with `<style lang="scss">`
+
+``` css
+@import '~common/src/styles/resources';
+```
 
 ## Build Setup
 

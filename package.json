@@ -1,8 +1,8 @@
 {
   "name": "common",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Wesley <wesley100002001@gmail.com>",
+  "version": "0.0.1",
+  "description": "A common library for all of Watchout Commons.",
+  "author": "Watchout <dev@watchout.tw>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
