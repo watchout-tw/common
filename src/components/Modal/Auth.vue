@@ -51,11 +51,11 @@
 import axios from 'axios'
 import dataStore from '../../lib/dataStore'
 
-axios.defaults.baseURL = 'https://apidev.watchout.tw'
+axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 export default {
   name: 'modal-auth',
-  props: ['modalAuthIsShown'],
+  props: ['modalAuthIsShown', 'isAuthenticated'],
   data() {
     return {
       dataStore: dataStore,
@@ -79,9 +79,11 @@ export default {
       var loginObj = /^.+@.+$/.test(this.account) ? { email: this.account } : { handle: this.account }
       loginObj.password = this.password
       axios.post('/login', loginObj).then(response => {
-        localStorage.setItem('watchout-token', response.token)
+        localStorage.setItem('watchout-token', response.data.token)
+        this.$emit('update:isAuthenticated', true)
+        this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
       }, response => {
-        console.log(response.message)
+        console.log(response)
       })
     }
   }
