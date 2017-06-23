@@ -1,13 +1,16 @@
 <template>
 <div class="vote">
+  <div>{{ isAuthenticated }}</div>
   <div v-for="option in options">{{ option.name }}</div>
 </div>
 </template>
 
 <script>
 export default {
+  props: ['isAuthenticated'],
   data() {
     return {
+      event_id: 'abcXyz0123',
       type: 'people',
       options: [
         {

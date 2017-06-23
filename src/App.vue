@@ -2,7 +2,7 @@
 <div id="app">
   <NavigationWithIdentity :isAuthenticated="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
   <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown"></ModalAuth>
-  <Vote></Vote>
+  <Vote :isAuthenticated="isAuthenticated"></Vote>
   <FooterStandard></FooterStandard>
 </div>
 </template>
