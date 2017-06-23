@@ -36,18 +36,30 @@ h1 {
 }
 h2 {
   font-size: 2.25rem;
+  &.small {
+    font-size: 1.5rem;
+  }
 }
 hgroup > h2 {
   font-size: 1.5rem;
 }
 h3 {
   font-size: 1.875rem;
+  &.small {
+    font-size: 1.25rem;
+  }
 }
 h4 {
   font-size: 1.5rem;
+  &.small {
+    font-size: 1.125rem;
+  }
 }
 h5 {
   font-size: 1.125rem;
+  &.small {
+    font-size: 1rem;
+  }
 }
 label {
   margin: 0;
@@ -132,7 +144,7 @@ input[type='password']:not([class^="el"]) {
     width: 100%;
   }
 }
-button {
+button:not([class^="el"]) {
   background: $color-generic-grey;
   border: 2px $color-border-grey solid;
   border-radius: 2px;
@@ -145,7 +157,7 @@ button {
     padding: 0.5rem;
   }
 }
-input + button {
+input + button:not([class^="el"]) {
   margin-left: 0.5rem;
 }
 .field {
