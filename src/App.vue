@@ -1,8 +1,8 @@
 <template>
 <div id="app">
-  <NavigationWithIdentity :isAuthenticated="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
-  <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown"></ModalAuth>
-  <Vote :isAuthenticated="isAuthenticated"></Vote>
+  <NavigationWithIdentity :isAuthenticated.sync="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
+  <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown" :isAuthenticated.sync="isAuthenticated"></ModalAuth>
+  <Vote></Vote>
   <FooterStandard></FooterStandard>
 </div>
 </template>
