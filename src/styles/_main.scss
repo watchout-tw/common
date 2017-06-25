@@ -25,8 +25,8 @@ h1 {
     font-size: 6rem;
   }
   &.small {
-    font-weight: bold;
     font-size: 2rem;
+    font-weight: bold;
   }
   &.sit {
     text-align: center;
@@ -38,6 +38,7 @@ h2 {
   font-size: 2.25rem;
   &.small {
     font-size: 1.5rem;
+    font-weight: bold;
   }
 }
 hgroup > h2 {
@@ -47,18 +48,21 @@ h3 {
   font-size: 1.875rem;
   &.small {
     font-size: 1.25rem;
+    font-weight: bold;
   }
 }
 h4 {
   font-size: 1.5rem;
   &.small {
     font-size: 1.125rem;
+    font-weight: bold;
   }
 }
 h5 {
   font-size: 1.125rem;
   &.small {
     font-size: 1rem;
+    font-weight: bold;
   }
 }
 label {
@@ -144,7 +148,7 @@ input[type='password']:not([class^="el"]) {
     width: 100%;
   }
 }
-button:not([class^="el"]) {
+button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next in el-pagination
   background: $color-generic-grey;
   border: 2px $color-border-grey solid;
   border-radius: 2px;
