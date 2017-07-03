@@ -39,7 +39,7 @@ $font-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Robo
   font-family: "Space Mono", "noto-serif-patch", "source-han-serif-tc", monospace;
 }
 @mixin font-serif {
-  font-family: "noto-serif-patch", "source-han-serif-tc", serif;
+  font-family: "century-std", "noto-serif-patch", "source-han-serif-tc", serif;
 }
 @mixin underline($opacity) {
   border-bottom: 2px rgba($color-watchout, $opacity) solid;
