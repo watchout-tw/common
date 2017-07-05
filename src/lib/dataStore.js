@@ -34,7 +34,7 @@ var channels = {
   park: new Channel('park', 212, 'https://park.watchout.tw/', '中央公園'),
   lab: new Channel('lab', 232, 'https://lab.watchout.tw/', '議題實驗室'),
   musou: new Channel('musou', 212, 'https://musou.watchout.tw/', '國會無雙'),
-  ask: new Channel('ask', 232, 'https://ask.watchout.tw/', '給問擂台'),
+  ask: new Channel('ask', 212, 'https://ask.watchout.tw/', '給問擂台'),
   edu: new Channel('edu', 212, 'https://edu.watchout.tw/', '公民學院'),
   maa: new Channel('maa', 132, 'https://maa.watchout.tw/', '草漫'),
   woo: new Channel('woo', 154, 'https://woo.watchout.tw/', '沃影音'),
