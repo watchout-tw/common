@@ -207,7 +207,7 @@ footer.standard {
     }
     > .green {
       height: 14rem;
-      background-image: url(assets/land/grass.png);
+      background-image: url(./assets/land/grass.png);
       background-repeat: repeat-x;
     }
     > .soil {
@@ -217,11 +217,11 @@ footer.standard {
       }
       > .light {
         background-color: $color-soil-light;
-        background-image: url(assets/land/soil/light.png);
+        background-image: url(./assets/land/soil/light.png);
       }
       > .dark {
         background-color: $color-soil-dark;
-        background-image: url(assets/land/soil/dark.png);
+        background-image: url(./assets/land/soil/dark.png);
       }
       > .deep {
         background-color: $color-soil-deep;
@@ -246,12 +246,12 @@ footer.standard {
           &.big {
             width: 1.75rem;
             height: 0.875rem;
-            background-image: url(assets/grass/big.png);
+            background-image: url(./assets/grass/big.png);
           }
           &.small {
             width: 0.75rem;
             height: 0.5rem;
-            background-image: url(assets/grass/small.png);
+            background-image: url(./assets/grass/small.png);
           }
         }
       }
@@ -345,10 +345,10 @@ footer.standard {
       }
 
       &[type="facebook"] > .link > .image > .type {
-        background-image: url(assets/social/facebook/round.png);
+        background-image: url(./assets/social/facebook/round.png);
       }
       &[type="LINE"] > .link > .image > .type {
-        background-image: url(assets/social/LINE/round.png);
+        background-image: url(./assets/social/LINE/round.png);
       }
     }
   }
