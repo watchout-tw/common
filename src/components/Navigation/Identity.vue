@@ -1,10 +1,8 @@
 <template>
-<div>
-  <nav class="navbar sticky-top navbar-light" :class="channel.classes.bg">
+<nav class="navbar sticky-top navbar-light" :class="channel.classes.bg">
     <a class="navbar-brand" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
     <a class="navbar-button" :class="isAuthenticated ? 'identity-citizen' : 'identity-anon'" id="navbar-identity" @click="toggleModalAuth"></a>
-  </nav>
-</div>
+</nav>
 </template>
 
 <script>
