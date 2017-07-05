@@ -4,6 +4,7 @@
   <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown" :isAuthenticated.sync="isAuthenticated"></ModalAuth>
   <Vote></Vote>
   <FooterStandard></FooterStandard>
+  <SupportWatchoutStandard></SupportWatchoutStandard>
 </div>
 </template>
 
@@ -13,6 +14,7 @@ import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
 import FooterStandard from './components/Footer/Standard'
 import Vote from './components/Vote'
+import SupportWatchoutStandard from './components/SupportWatchout/Standard'
 
 export default {
   name: 'app',
@@ -20,7 +22,8 @@ export default {
     NavigationWithIdentity,
     ModalAuth,
     FooterStandard,
-    Vote
+    Vote,
+    SupportWatchoutStandard
   },
   data() {
     return {
