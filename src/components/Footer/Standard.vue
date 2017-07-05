@@ -19,7 +19,7 @@
         </div>
         <div class="cluster d-flex flex-row justify-content-center">
           <div v-for="group in cluster" class="group">
-            <h5>{{ group.title }}</h5>
+            <div class="title"><h5>{{ group.title }}</h5></div>
             <div v-for="item in group.links" class="item"><a :href="item.link" class="a-text">{{ item.title }}</a></div>
           </div>
         </div>
@@ -358,6 +358,9 @@ footer.standard {
 
     > .group {
       margin: 0 2rem;
+      > .title {
+        margin: 0.25rem 0;
+      }
       > .item {
         color: rgba(white, 0.75);
         text-align: left;
