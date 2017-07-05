@@ -8,21 +8,12 @@
 </template>
 
 <script>
-import dataStore from '../../lib/dataStore'
-
-var currentChannel = dataStore.channels.park
-
 export default {
   name: 'navigation-with-identity',
-  props: ['isAuthenticated', 'modalAuthIsShown'],
+  props: ['channel', 'isAuthenticated', 'modalAuthIsShown'],
   mounted() {
     console.log('#' + this.channel.id)
     console.log('Navigation with identity initiated.')
-  },
-  data() {
-    return {
-      channel: currentChannel
-    }
   },
   methods: {
     toggleModalAuth() {

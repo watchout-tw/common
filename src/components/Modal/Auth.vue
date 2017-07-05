@@ -49,7 +49,7 @@
 
 <script>
 import axios from 'axios'
-import dataStore from '../../lib/dataStore'
+import dataStore from '@/lib/dataStore'
 
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
@@ -59,8 +59,8 @@ export default {
   data() {
     return {
       dataStore: dataStore,
-      account: '',
-      password: ''
+      account: undefined,
+      password: undefined
     }
   },
   methods: {

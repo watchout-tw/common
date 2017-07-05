@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import dataStore from '../../lib/dataStore'
+import dataStore from '@/lib/dataStore'
 
 var social = [
   {
