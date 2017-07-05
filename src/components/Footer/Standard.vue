@@ -225,7 +225,7 @@ footer.standard {
       }
       > .deep {
         background-color: $color-soil-deep;
-        padding-bottom: 2rem;
+        padding-bottom: 12rem;
       }
     }
     > .elements {
