@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import dataStore from '@/lib/dataStore'
-import NavigationWithIdentity from '@/components/Navigation/Identity'
-import ModalAuth from '@/components/Modal/Auth'
-import FooterStandard from '@/components/Footer/Standard'
+import dataStore from './lib/dataStore'
+import NavigationWithIdentity from './components/Navigation/Identity'
+import ModalAuth from './components/Modal/Auth'
+import FooterStandard from './components/Footer/Standard'
 import Vote from './components/Vote'
 
 export default {
@@ -33,6 +33,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'styles/resources';
-@import 'styles/main';
+@import './styles/resources';
+@import './styles/main';
 </style>
