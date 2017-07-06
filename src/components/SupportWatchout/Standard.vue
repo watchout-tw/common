@@ -23,7 +23,7 @@ export default {
     return {
       link: dataStore.links.support,
       text: [
-        '《給問擂台》沃草年度巨獻',
+        '沃草年度巨獻：《給問擂台》',
         '全年十二場，很缺錢，真的很缺。'
       ],
       image: 'pitcher',
