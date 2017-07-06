@@ -23,8 +23,8 @@ export default {
     return {
       link: dataStore.links.support,
       text: [
-        '給問擂台，沃草2017年度巨獻',
-        '全年12場，hen缺錢，真的hen缺'
+        '《給問擂台》沃草年度巨獻',
+        '全年十二場，很缺錢，真的很缺。'
       ],
       image: 'pitcher',
       button: '灌溉好專案'
@@ -67,8 +67,10 @@ $background-color: $color-ask;
     > .text {
       padding: 0.25rem;
       text-align: center;
+      @include font-serif;
       font-size: 1.125rem;
-      color: rgba(white, 0.95);
+      font-weight: bold;
+      color: rgba(black, 0.95);
       > p {
         margin: 0.25rem 0;
         line-height: 1.25;
@@ -97,8 +99,16 @@ $background-color: $color-ask;
           padding: 0.75rem 2.5rem;
           font-size: 1rem;
           line-height: 1;
-          background: white;
-          color: $background-color;
+          background: rgba(white, 0.65);
+          color: black;
+        }
+      }
+    }
+
+    &:hover > .button {
+      > .grouping {
+        > button {
+          background: rgba(white, 0.95);
         }
       }
     }
