@@ -10,6 +10,7 @@
         <button>{{ button }}</button>
       </div>
     </div>
+    <div class="close white" @click.stop.prevent="close"></div>
   </a>
 </div>
 </template>
@@ -17,6 +18,7 @@
 <script>
 import dataStore from '../../lib/dataStore'
 export default {
+  props: ['supportIsShown'],
   data() {
     return {
       link: dataStore.links.support,
@@ -31,6 +33,11 @@ export default {
   computed: {
     imageURL() {
       return require('./assets/' + this.image + '.png')
+    }
+  },
+  methods: {
+    close() {
+      this.$emit('update:supportIsShown', false)
     }
   }
 }
@@ -49,6 +56,7 @@ $background-color: $color-ask;
 
   > .panel {
     @include shadow;
+    position: relative;
     display: block;
     width: 100%;
     max-width: $bp-sm;
