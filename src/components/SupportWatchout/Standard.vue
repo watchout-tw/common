@@ -1,6 +1,6 @@
 <template>
 <div class="support-watchout">
-  <a :href="link" class="panel d-sm-flex justify-content-around align-items-center">
+  <a :href="link" target="_blank" class="panel d-sm-flex justify-content-around align-items-center">
     <div class="text">
       <p v-for="line in text">{{ line }}</p>
     </div>
