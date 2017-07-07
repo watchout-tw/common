@@ -10,8 +10,8 @@ vue init webpack [project_name]
 
 # add modules to project
 npm install node-sass sass-loader --save-dev
-npm install path/to/watchout-tw/common --save-dev
 npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
+npm install path/to/watchout-tw/common --save-dev
 ```
 
 ## Customize a Watchout front-end repo
@@ -29,14 +29,50 @@ npm install jquery tether bootstrap@4.0.0-alpha.6 axios --save
 }
 ```
 
+### `/build/webpack.base.conf.js`
+
+``` js
+module.exports = {
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'), // import ... '@/path/to/thing.js'
+      '_': resolve('static') // require('_/path/to/img.png')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: [resolve('src'), resolve('test'), resolve('node_modules/common')]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 100000, // increase limit for small images
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+      ...
+    ]
+  }
+}
+```
+
 ### `/config/index.js`
 
 ``` js
 module.exports = {
-  ...
-  dev: {
+  build: {
+    assetsPublicPath: './', // for test run on localhost
     ...
-    autoOpenBrowser: false
+  },
+  dev: {
+    autoOpenBrowser: false,
+    ...
   }
 }
 ```
@@ -45,7 +81,6 @@ module.exports = {
 
 ``` js
 module.exports = {
-  ...
   rules: {
     ...
     'space-before-function-paren': 0,
