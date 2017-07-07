@@ -67,6 +67,9 @@ module.exports = {
 ``` js
 module.exports = {
   build: {
+    index: path.resolve(__dirname, '../docs/index.html'),
+    assetsRoot: path.resolve(__dirname, '../docs'),
+    ...
     assetsPublicPath: './', // for test run on localhost
     ...
   },
