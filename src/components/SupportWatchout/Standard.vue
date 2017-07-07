@@ -21,7 +21,7 @@ export default {
   props: ['supportIsShown'],
   data() {
     return {
-      link: dataStore.links.support,
+      link: dataStore.links.support.ask.direct,
       text: [
         '沃草年度巨獻：《給問擂台》',
         '全年十二場，很缺錢，真的很缺。'
