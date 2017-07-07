@@ -189,7 +189,8 @@ export default {
 
 // Footer
 footer.standard {
-  margin-top: 8rem;
+  padding-top: 8rem;
+  background: white;
   z-index: 1031;
 
   > .land {
