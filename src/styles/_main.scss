@@ -169,6 +169,14 @@ button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next i
     font-size: 0.875rem;
     padding: 0.5rem;
   }
+  &.musou {
+    background: $color-musou;
+    border-color: $color-musou-darker;
+  }
+  &.park {
+    background: $color-park;
+    border-color: $color-park-darker;
+  }
 }
 input + button:not([class^="el"]) {
   margin-left: 0.5rem;
@@ -195,6 +203,15 @@ input[type='checkbox']:not([class^="el"]) {
   border: 2px $color-border-grey solid;
   border-radius: 2px;
 
+  &.musou {
+    background-color: rgba($color-musou, 0.25);
+    border-color: $color-musou;
+  }
+  &.park {
+    background-color: rgba($color-park, 0.25);
+    border-color: $color-park;
+  }
+
   &:checked {
     background-color: $color-generic-grey;
     &:before {
@@ -208,6 +225,13 @@ input[type='checkbox']:not([class^="el"]) {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -65%) rotate(45deg);
+    }
+
+    &.musou {
+      background-color: $color-musou;
+    }
+    &.park {
+      background-color: $color-park;
     }
   }
 }

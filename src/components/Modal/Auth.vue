@@ -1,6 +1,6 @@
 <template>
 <transition name="modal">
-  <div id="modal-auth" class="modal-mask">
+  <div class="modal-auth modal-mask">
     <div class="modal-wrapper" @click.self="toggleModalAuth">
       <div class="modal-dialog">
         <div class="accordion" id="modal-auth-accordion">
@@ -10,11 +10,11 @@
             </a>
             <div class="card-body collapse show" id="form-join">
               <div class="padding">
-                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" style="width: 12.5rem;" /><button class="small">隨機</button></div>
+                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" style="width: 12.5rem;" /><button class="park small">隨機</button></div>
                 <div class="field"><input type="email" name="email" placeholder="Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" placeholder="密碼" class="full-width" /></div>
                 <div class="field d-flex justify-content-between align-items-center">
-                  <button v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox"><span>我同意使用條款</span></label>
+                  <button class="park" v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox" class="park"><span>我同意使用條款</span></label>
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
               <div class="padding">
                 <div class="field"><input type="text" name="id-or-email" v-model="account" placeholder="草民代號或Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" v-model="password" placeholder="密碼" class="full-width" /></div>
-                <div class="field"><button v-on:click="login">登入</button></div>
+                <div class="field"><button class="park" v-on:click="login">登入</button></div>
               </div>
             </div>
           </div>
@@ -90,13 +90,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../styles/resources';
 
-.accordion > .card {
-  background: rgba($color-park, 0.16);
-  &.dark {
-    background: rgba($color-park, 0.32);
+.modal-auth {
+  .accordion > .card {
+    background: rgba($color-park, 0.16);
+    &.dark {
+      background: rgba($color-park, 0.32);
+    }
   }
 }
 </style>

@@ -8,6 +8,13 @@ $color-ask: #4DEBDF;
 $color-musou: #FF5368;
 $color-edu: #B7F661;
 
+$color-watchout-darker: #47C9AD;
+$color-park-darker: #E6A353;
+$color-lab-darker: $color-watchout-darker;
+$color-ask-darker: #45D1C5;
+$color-musou-darker: #E64C5E;
+$color-edu-darker: #A4DB56;
+
 $color-placeholder: rgba(0, 0, 0, 0.65);
 $color-shadow: rgba(0, 0, 0, 0.25);
 $color-generic-grey: #b9b9b9;
@@ -64,6 +71,7 @@ $font-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Robo
 
 $bp-sm: 576px;
 $bp-md: 768px;
+$bp-lg-alt: 960px;
 $bp-lg: 992px;
 $bp-xl: 1200px;
 @mixin bp-sm-only {
@@ -73,6 +81,16 @@ $bp-xl: 1200px;
 }
 @mixin bp-sm-up {
   @media (min-width: #{$bp-sm}) {
+    @content;
+  }
+}
+@mixin bp-md-up {
+  @media (min-width: #{$bp-md}) {
+    @content;
+  }
+}
+@mixin bp-lg-alt-down {
+  @media (max-width: #{$bp-lg-alt}) {
     @content;
   }
 }
@@ -97,3 +115,10 @@ $z-modal-backdrop: 1040;
 $z-modal: 1050;
 $z-popover: 1060;
 $z-tooltip: 1070;
+
+// util
+
+@mixin sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
