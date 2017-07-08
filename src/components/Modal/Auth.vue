@@ -1,6 +1,6 @@
 <template>
 <transition name="modal">
-  <div class="modal-auth modal-mask">
+  <div id="modal-auth" class="modal-mask">
     <div class="modal-wrapper" @click.self="toggleModalAuth">
       <div class="modal-dialog">
         <div class="accordion" id="modal-auth-accordion">
@@ -93,7 +93,7 @@ export default {
 <style lang="scss">
 @import '../../styles/resources';
 
-.modal-auth {
+#modal-auth {
   .accordion > .card {
     background: rgba($color-park, 0.16);
     &.dark {
