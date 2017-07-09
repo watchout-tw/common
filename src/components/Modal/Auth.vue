@@ -5,7 +5,7 @@
       <div class="modal-dialog">
         <div class="accordion" id="modal-auth-accordion">
           <div class="card">
-            <a class="card-head" data-toggle="collapse" href="#form-join" data-parent="#modal-auth-accordion">
+            <a class="card-head" @click.stop.prevent data-toggle="collapse" href="#form-join" data-parent="#modal-auth-accordion">
               <h4>成為草民</h4>
             </a>
             <div class="card-body collapse show" id="form-join">
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="card dark">
-            <a class="card-head" data-toggle="collapse" href="#form-login" data-parent="#modal-auth-accordion">
+            <a class="card-head" @click.stop.prevent data-toggle="collapse" href="#form-login" data-parent="#modal-auth-accordion">
               <label class="text-color-park">已經有帳號了？</label>
               <h4>草民登入</h4>
             </a>
