@@ -1,4 +1,8 @@
-/* Resources */
+// Bootstrap partial import
+
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
 // Colors
 
 $color-watchout: #50E3C2;

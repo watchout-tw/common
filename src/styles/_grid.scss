@@ -1,0 +1,12 @@
+// define these variables before bootstrap does
+$grid-columns: 12;
+$grid-gutter-width-base: 32px;
+$grid-gutter-widths: (
+  xs: $grid-gutter-width-base,
+  sm: $grid-gutter-width-base,
+  md: $grid-gutter-width-base,
+  lg: $grid-gutter-width-base,
+  xl: $grid-gutter-width-base
+);
+
+@import '~bootstrap/scss/bootstrap-grid';

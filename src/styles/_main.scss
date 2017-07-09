@@ -1,7 +1,14 @@
-/* Main */
+// Bootstrap partial import
+
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/normalize';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/card';
+
 // General override
 
-body {
+html, body {
   font-size: 16px;
 }
 button, input, optgroup, select, textarea {
@@ -254,7 +261,7 @@ input[type='checkbox']:not([class^="el"]) {
     border-radius: 0;
     padding: 0 1rem;
     > .card-head {
-      padding: 1rem 0;
+      padding: 0.75rem 0;
     }
     > .card-body {
       > .padding {
