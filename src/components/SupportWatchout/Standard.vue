@@ -1,6 +1,6 @@
 <template>
 <div class="support-watchout">
-  <a :href="link" target="_blank" class="panel d-sm-flex justify-content-around align-items-center">
+  <a :href="link" target="_blank" class="panel d-sm-flex justify-content-around align-items-center" :class="panelClasses">
     <div class="text">
       <p v-for="line in text">{{ line }}</p>
     </div>
@@ -16,21 +16,39 @@
 </template>
 
 <script>
+const supportPackages = {
+  ask: {
+    channel: 'ask',
+    link: dataStore.links.support.ask.direct,
+    text: [
+      '沃草年度巨獻：《給問擂台》',
+      '全年十二場，很缺錢，真的很缺。'
+    ],
+    image: 'pitcher',
+    button: '灌溉好專案'
+  },
+  musou: {
+    channel: 'musou',
+    link: dataStore.links.support.watchout.custom,
+    text: [
+      '請支持我們做更多有意義的專題',
+      '因為很缺錢，真的很缺'
+    ],
+    image: 'farmer_hat',
+    button: '支持沃草，成為草民'
+  }
+}
+
 import dataStore from '../../lib/dataStore'
 export default {
-  props: ['supportIsShown'],
+  props: ['supportIsShown', 'supportPackageID'],
   data() {
-    return {
-      link: dataStore.links.support.ask.direct,
-      text: [
-        '沃草年度巨獻：《給問擂台》',
-        '全年十二場，很缺錢，真的很缺。'
-      ],
-      image: 'pitcher',
-      button: '灌溉好專案'
-    }
+    return supportPackages[this.supportPackageID]
   },
   computed: {
+    panelClasses() {
+      return ['bg-' + this.channel + '-ninetyfive']
+    },
     imageURL() {
       return require('./assets/' + this.image + '.png')
     }
@@ -46,8 +64,6 @@ export default {
 <style lang="scss">
 @import '../../styles/resources';
 
-$background-color: $color-ask;
-
 .support-watchout {
   position: fixed;
   bottom: 0;
@@ -62,7 +78,6 @@ $background-color: $color-ask;
     max-width: $bp-sm;
     padding: 0.75rem 1rem;
     margin: 0 auto;
-    background-color: rgba($background-color, 0.95);
 
     > .text {
       padding: 0.25rem;

@@ -324,6 +324,9 @@ input[type='checkbox']:not([class^="el"]) {
 .bg-watchout {
   background-color: $color-watchout;
 }
+.bg-watchout-ninetyfive {
+  background-color: rgba($color-watchout, 0.95);
+}
 .bg-park {
   background-color: $color-park;
 }
@@ -339,6 +342,9 @@ input[type='checkbox']:not([class^="el"]) {
 .bg-ask {
   background-color: $color-ask;
 }
+.bg-ask-ninetyfive {
+  background-color: rgba($color-ask, 0.95);
+}
 .bg-ask-light {
   background-color: rgba($color-ask, 0.25);
 }
@@ -347,6 +353,9 @@ input[type='checkbox']:not([class^="el"]) {
 }
 .bg-musou {
   background-color: $color-musou;
+}
+.bg-musou-ninetyfive {
+  background-color: rgba($color-musou, 0.95);
 }
 .bg-musou-light {
   background-color: rgba($color-musou, 0.25);
