@@ -10,11 +10,11 @@
             </a>
             <div class="card-body collapse show" id="form-join">
               <div class="padding">
-                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" style="width: 12.5rem;" /><button class="park small">隨機</button></div>
-                <div class="field"><input type="email" name="email" placeholder="Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" placeholder="密碼" class="full-width" /></div>
+                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="newHandle" style="width: 12.5rem;" /><button class="park small">隨機</button></div>
+                <div class="field"><input type="email" name="email" v-model="newEmail" placeholder="Email" class="full-width" /></div>
+                <div class="field"><input type="password" name="password" v-model="newPassword" placeholder="密碼" class="full-width" /></div>
                 <div class="field d-flex justify-content-between align-items-center">
-                  <button class="park" v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox" class="park"><span>我同意使用條款</span></label>
+                  <button class="park" v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意使用條款</span></label>
                 </div>
               </div>
             </div>
@@ -60,19 +60,41 @@ export default {
     return {
       dataStore: dataStore,
       account: undefined,
-      password: undefined
+      password: undefined,
+      newEmail: '',
+      newHandle: '',
+      newPassword: '',
+      iAgree: false
     }
   },
   methods: {
-    toggleModalAuth: function() {
+    toggleModalAuth () {
       this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
     },
-    register: function() {
-
+    register () {
+      if (!this.iAgree) {
+        alert('請同意使用條款')
+        return
+      }
+      if (!this.newEmail || !this.newHandle || !this.newPassword) {
+        alert('帳號、密碼、Email 請勿留空')
+        return
+      }
+      var newWatchouter = {
+        handle: this.newHandle,
+        password: this.newPassword,
+        email: this.newEmail
+      }
+      axios.post('/join', newWatchouter).then(response => {
+        alert(response.data.message)
+      }).catch(error => {
+        console.log(error)
+        alert('註冊錯誤，請稍後再試')
+      })
     },
-    login: function() {
+    login () {
       if (!this.account || !this.password) {
-        alert('plz enter account n password')
+        alert('請輸入帳號、密碼')
         return
       }
       // Should create a RESTful service to handle
@@ -82,8 +104,8 @@ export default {
         localStorage.setItem('watchout-token', response.data.token)
         this.$emit('update:isAuthenticated', true)
         this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
-      }, response => {
-        console.log(response)
+      }).catch(error => {
+        console.log(error)
       })
     }
   }
