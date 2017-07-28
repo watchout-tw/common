@@ -85,7 +85,7 @@ export default {
         password: this.newPassword,
         email: this.newEmail
       }
-      axios.post('/join', newWatchouter).then(response => {
+      axios.post('/auth/join', newWatchouter).then(response => {
         alert(response.data.message)
       }).catch(error => {
         console.log(error)
@@ -100,7 +100,7 @@ export default {
       // Should create a RESTful service to handle
       var loginObj = /^.+@.+$/.test(this.account) ? { email: this.account } : { handle: this.account }
       loginObj.password = this.password
-      axios.post('/login', loginObj).then(response => {
+      axios.post('/auth/login', loginObj).then(response => {
         localStorage.setItem('watchout-token', response.data.token)
         this.$emit('update:isAuthenticated', true)
         this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
