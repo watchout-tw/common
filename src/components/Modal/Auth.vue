@@ -24,7 +24,7 @@
               <label class="text-color-park">已經有帳號了？</label>
               <h4>草民登入</h4>
             </a>
-            <div class="card-body collapse" id="form-login">
+            <div class="card-body collapse show" id="form-login">
               <div class="padding">
                 <div class="field"><input type="text" name="id-or-email" v-model="account" placeholder="草民代號或Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" v-model="password" placeholder="密碼" class="full-width" /></div>
