@@ -10,11 +10,11 @@
             </a>
             <div class="card-body collapse show" id="form-join">
               <div class="padding">
-                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="newHandle" style="width: 12.5rem;" /><button class="park small">隨機</button></div>
-                <div class="field"><input type="email" name="email" v-model="newEmail" placeholder="Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" v-model="newPassword" placeholder="密碼" class="full-width" /></div>
+                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small">隨機</button></div>
+                <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
+                <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
                 <div class="field d-flex justify-content-between align-items-center">
-                  <button class="park" v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意使用條款</span></label>
+                  <button class="park" v-on:click="register">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
                 </div>
               </div>
             </div>
@@ -26,8 +26,8 @@
             </a>
             <div class="card-body collapse show" id="form-login">
               <div class="padding">
-                <div class="field"><input type="text" name="id-or-email" v-model="account" placeholder="草民代號或Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" v-model="password" placeholder="密碼" class="full-width" /></div>
+                <div class="field"><input type="text" name="id-or-email" v-model="loginAccount" placeholder="草民代號或Email" class="full-width" /></div>
+                <div class="field"><input type="password" name="password" v-model="loginPassword" placeholder="密碼" class="full-width" /></div>
                 <div class="field"><button class="park" v-on:click="login">登入</button></div>
               </div>
             </div>
@@ -59,11 +59,11 @@ export default {
   data() {
     return {
       dataStore: dataStore,
-      account: undefined,
-      password: undefined,
-      newEmail: '',
-      newHandle: '',
-      newPassword: '',
+      loginAccount: undefined,
+      loginPassword: undefined,
+      joinEmail: undefined,
+      joinHandle: undefined,
+      joinPassword: undefined,
       iAgree: false
     }
   },
@@ -76,14 +76,14 @@ export default {
         alert('請同意使用條款')
         return
       }
-      if (!this.newEmail || !this.newHandle || !this.newPassword) {
+      if (!this.joinEmail || !this.joinHandle || !this.joinPassword) {
         alert('帳號、密碼、Email 請勿留空')
         return
       }
       var newWatchouter = {
-        handle: this.newHandle,
-        password: this.newPassword,
-        email: this.newEmail
+        handle: this.joinHandle,
+        password: this.joinPassword,
+        email: this.joinEmail
       }
       axios.post('/auth/join', newWatchouter).then(response => {
         alert(response.data.message)
@@ -93,13 +93,13 @@ export default {
       })
     },
     login () {
-      if (!this.account || !this.password) {
+      if (!this.loginAccount || !this.loginPassword) {
         alert('請輸入帳號、密碼')
         return
       }
       // Should create a RESTful service to handle
-      var loginObj = /^.+@.+$/.test(this.account) ? { email: this.account } : { handle: this.account }
-      loginObj.password = this.password
+      var loginObj = /^.+@.+$/.test(this.loginAccount) ? { email: this.loginAccount } : { handle: this.loginAccount }
+      loginObj.password = this.loginPassword
       axios.post('/auth/login', loginObj).then(response => {
         localStorage.setItem('watchout-token', response.data.token)
         this.$emit('update:isAuthenticated', true)
