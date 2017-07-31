@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      this.activeIndex = this.root + key
+      this.activeIndex = key
     },
     toggleModalAuth() {
       this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
