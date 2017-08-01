@@ -147,6 +147,6 @@ use to check if token is stored in browser
 ```
 import * as util from 'common/src/lib/util'
 
-var isTokened = util.jwtTokenIsExist
+var isTokened = util.jwtTokenIsExist()
 
 ```
