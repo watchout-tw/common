@@ -39,6 +39,7 @@ export default {
     toggleModalAuth() {
       if (util.jwtTokenIsExist()) {
         // TODO: slide sidebar while logged in
+        alert('你登入了～好棒棒')
       } else {
         this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
       }
