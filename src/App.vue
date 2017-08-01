@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import * as util from './lib/util'
 import dataStore from './lib/dataStore'
 import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       channel: dataStore.channels.park,
-      isAuthenticated: false,
+      isAuthenticated: util.jwtTokenIsExist(),
       modalAuthIsShown: false,
       supportIsShown: true,
       supportPackageID: 'musou'

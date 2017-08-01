@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import * as util from '../../lib/util'
+
 export default {
   name: 'navigation-with-identity',
   props: ['channel', 'isAuthenticated', 'modalAuthIsShown', 'menu'],
@@ -35,7 +37,11 @@ export default {
       this.activeIndex = key
     },
     toggleModalAuth() {
-      this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
+      if (util.jwtTokenIsExist()) {
+        // TODO: slide sidebar while logged in
+      } else {
+        this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
+      }
     }
   }
 }
