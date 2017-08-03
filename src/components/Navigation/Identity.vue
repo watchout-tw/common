@@ -84,6 +84,7 @@ export default {
   top: $navbar-height + 4px;
 }
 .el-menu-item, .el-submenu__title {
+  padding: 0 16px;
   color: black;
 }
 .el-menu--horizontal .el-submenu .el-submenu__icon-arrow {
