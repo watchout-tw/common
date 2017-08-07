@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar sticky-top d-flex flex-row" :class="channel.classes.bg">
     <a class="navbar-brand" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
-    <el-menu :router="true" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+    <el-menu v-if="menu" :router="true" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-submenu v-for="(group, groupIndex) in menu" :index="root + group.id" :key="group.id">
         <template slot="title">{{ group.name }}</template>
         <el-menu-item v-for="(page, index) of group.pages" :index="root + page.id" :key="page.id">
@@ -26,7 +26,9 @@ export default {
     }
   },
   created() {
-    this.activeIndex = this.$route.path
+    if(this.$route) {
+      this.activeIndex = this.$route.path
+    }
   },
   mounted() {
     console.log('#' + this.channel.id)
@@ -39,7 +41,7 @@ export default {
     toggleModalAuth() {
       if (util.jwtTokenIsExist()) {
         // TODO: slide sidebar while logged in
-        alert('你登入了～好棒棒')
+        alert('你已經登入了喲🕳✨🚀')
       } else {
         this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
       }
