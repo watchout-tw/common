@@ -2,7 +2,7 @@
 <div id="app">
   <NavigationWithIdentity :channel="channel" :isAuthenticated.sync="isAuthenticated" :modalAuthIsShown.sync="modalAuthIsShown"></NavigationWithIdentity>
   <ModalAuth v-if="modalAuthIsShown" :modalAuthIsShown.sync="modalAuthIsShown" :isAuthenticated.sync="isAuthenticated"></ModalAuth>
-  <Vote></Vote>
+  <Poll></Poll>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :supportIsShown.sync="supportIsShown" :supportPackageID="supportPackageID"></SupportWatchoutStandard>
 </div>
@@ -14,7 +14,7 @@ import dataStore from './lib/dataStore'
 import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
 import FooterStandard from './components/Footer/Standard'
-import Vote from './components/Vote'
+import Poll from './components/Poll'
 import SupportWatchoutStandard from './components/SupportWatchout/Standard'
 
 export default {
@@ -23,7 +23,7 @@ export default {
     NavigationWithIdentity,
     ModalAuth,
     FooterStandard,
-    Vote,
+    Poll,
     SupportWatchoutStandard
   },
   data() {
