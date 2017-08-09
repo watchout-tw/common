@@ -199,7 +199,7 @@ button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next i
     @include shadow;
   }
 }
-input + button:not([class^="el"]) {
+input:not(.full-width) + button:not([class^="el"]) {
   margin-left: 0.5rem;
 }
 .field {
@@ -440,6 +440,10 @@ section {
   &.small {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+  &.tight {
+    margin-top: 0;
+    margin-bottom: 0;
   }
   &.center {
     margin-left: auto;

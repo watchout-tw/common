@@ -2,6 +2,7 @@
 <div id="app">
   <NavigationWithIdentity :channel="channel"></NavigationWithIdentity>
   <ModalAuth v-if="modalAuthIsShown"></ModalAuth>
+  <ModalResetPassword v-if="modalResetPasswordIsShown"></ModalResetPassword>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
   <Poll :config="pollSampleConfig"></Poll>
   <FooterStandard></FooterStandard>
@@ -15,6 +16,7 @@ import Vuex from 'vuex'
 import dataStore from './lib/dataStore'
 import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
+import ModalResetPassword from './components/Modal/ResetPassword'
 import ModalIdentity from './components/Modal/Identity'
 import FooterStandard from './components/Footer/Standard'
 import Poll from './components/Poll'
@@ -28,6 +30,7 @@ export default {
   components: {
     NavigationWithIdentity,
     ModalAuth,
+    ModalResetPassword,
     ModalIdentity,
     FooterStandard,
     Poll,
@@ -39,6 +42,9 @@ export default {
     },
     modalAuthIsShown() {
       return this.$store.state.modalAuthIsShown
+    },
+    modalResetPasswordIsShown() {
+      return this.$store.state.modalResetPasswordIsShown
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown
