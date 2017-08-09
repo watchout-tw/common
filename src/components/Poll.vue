@@ -22,7 +22,7 @@
     <div class="pg center small">
       <p class="note">必須先成為草民或登入才能投票哦。</p>
     </div>
-    <button class="park" @click="showModalAuth">註冊或登入</button>
+    <button class="park" @click="showModalAuth">成為草民或登入</button>
   </div>
 </div>
 </template>
