@@ -20,7 +20,7 @@
   </div>
   <div class="login-prompt" v-if="!isAuthenticated">
     <div class="pg center small">
-      <p class="note">必須先註冊或登入草民才能投票哦。</p>
+      <p class="note">必須先成為草民或登入才能投票哦。</p>
     </div>
     <button class="park" @click="showModalAuth">註冊或登入</button>
   </div>
