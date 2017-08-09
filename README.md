@@ -140,13 +140,13 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ## Methods
 
-### jwtTokenIsExist
+### jwtTokenIsHere
 
 use to check if token is stored in browser
 
 ```
 import * as util from 'common/src/lib/util'
 
-var isTokened = util.jwtTokenIsExist()
+var isTokened = util.jwtTokenIsHere()
 
 ```

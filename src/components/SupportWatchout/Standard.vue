@@ -32,7 +32,7 @@ const supportPackages = {
     link: dataStore.links.support.watchout.custom,
     text: [
       '請支持我們做更多有意義的專題',
-      '因為很缺錢，真的很缺'
+      '因為很缺錢，真的很缺。'
     ],
     image: 'farmer_hat',
     button: '支持沃草，成為草民'
@@ -41,9 +41,9 @@ const supportPackages = {
 
 import dataStore from '../../lib/dataStore'
 export default {
-  props: ['supportIsShown', 'supportPackageID'],
+  props: ['supportIsShown', 'supportPackageKey'],
   data() {
-    return supportPackages[this.supportPackageID]
+    return supportPackages[this.supportPackageKey]
   },
   computed: {
     panelClasses() {

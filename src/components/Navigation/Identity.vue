@@ -9,20 +9,29 @@
         </el-menu-item>
       </el-submenu>
     </el-menu>
-    <a class="navbar-button" :class="isAuthenticated ? 'identity-citizen' : 'identity-anon'" id="navbar-identity" @click="toggleModalAuth"></a>
+    <a class="navbar-button" :class="isAuthenticated ? 'identity-citizen' : 'identity-anon'" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self="logout"></div></a>
 </nav>
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuex from 'vuex'
 import * as util from '../../lib/util'
+
+Vue.use(Vuex)
 
 export default {
   name: 'navigation-with-identity',
-  props: ['channel', 'isAuthenticated', 'modalAuthIsShown', 'menu'],
+  props: ['channel', 'menu'],
   data() {
     return {
       root: '/',
       activeIndex: undefined
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated
     }
   },
   created() {
@@ -39,12 +48,21 @@ export default {
       this.activeIndex = key
     },
     toggleModalAuth() {
-      if (util.jwtTokenIsExist()) {
-        // TODO: slide sidebar while logged in
-        alert('你已經登入了喲🕳✨🚀')
+      if(util.jwtTokenIsHere()) {
+        this.$store.dispatch('toggleModalIdentity', {
+          value: !this.$store.state.modalIdentityIsShown
+        })
       } else {
-        this.$emit('update:modalAuthIsShown', !this.modalAuthIsShown)
+        this.$store.dispatch('toggleModalAuth', {
+          value: !this.$store.state.modalAuthIsShown
+        })
       }
+    },
+    logout() {
+      this.$store.dispatch('toggleIsAuthenticated', {
+        value: false
+      })
+      localStorage.clear()
     }
   }
 }

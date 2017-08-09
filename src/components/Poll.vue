@@ -1,89 +1,84 @@
 <template>
-<div class="poll">
-  <h1 class="small">{{ config.title }}</h1>
-  <p>{{ config.question }}</p>
+<div class="poll" :class="pollClasses">
+  <h1 class="small">{{ config.name }}</h1>
+  <div class="pg">
+    <p>{{ config.question }}</p>
+  </div>
   <div class="options d-flex flex-wrap">
     <div v-for="option in config.options" :key="option.id" class="option" :class="optionClasses(option.id)" @click="handleSelect(option.id)">
       <div class="image" :style="optionImageStyle(option.id)"></div>
       <div class="select"></div>
       <div class="party-flag"><div class="flag" :style="flagStyle(option.party)"></div></div>
-      <p class="name">{{ option.name }}</p>
+      <div class="name">{{ option.name }}</div>
     </div>
   </div>
-  <button class="park submit">投下你的一票</button>
+  <div class="submit" v-if="isAuthenticated && !ballotCasted">
+    <div class="pg center small">
+      <p class="note">請想清楚再投票，送出後無法更改。</p>
+    </div>
+    <button class="park" @click="castBallot">投下你的一票</button>
+  </div>
+  <div class="login-prompt" v-if="!isAuthenticated">
+    <div class="pg center small">
+      <p class="note">必須先註冊或登入草民才能投票哦。</p>
+    </div>
+    <button class="park" @click="showModalAuth">註冊或登入</button>
+  </div>
 </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuex from 'vuex'
 import axios from 'axios'
+
+Vue.use(Vuex)
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 export default {
-  props: ['isAuthenticated'],
+  props: ['config'],
   data() {
     return {
       lib: {
         parties: []
       },
-      event_id: 'abcXyz0123',
-      type: 'people',
       selectedOptionID: undefined,
-      config: {
-        title: '桃園立委給問嗎',
-        question: '這些立委，你想問誰？',
-        options: [
-          {
-            id: '鄭運鵬',
-            name: '鄭運鵬',
-            party: '民進黨',
-            district: '桃園市第一選舉區'
-          },
-          {
-            id: '陳賴素美',
-            name: '陳賴素美',
-            party: '民進黨',
-            district: '桃園市第二選舉區'
-          },
-          {
-            id: '陳學聖',
-            name: '陳學聖',
-            party: '國民黨',
-            district: '桃園市第三選舉區'
-          },
-          {
-            id: '鄭寶清',
-            name: '鄭寶清',
-            party: '民進黨',
-            district: '桃園市第四選舉區'
-          },
-          {
-            id: '呂玉玲',
-            name: '呂玉玲',
-            party: '國民黨',
-            district: '桃園市第五選舉區'
-          },
-          {
-            id: '趙正宇',
-            name: '趙正宇',
-            party: '無黨籍',
-            district: '桃園市第六選舉區'
-          },
-          {
-            id: '吳志揚',
-            name: '吳志揚',
-            party: '國民黨',
-            district: '全國不分區'
-          }
-        ]
+      ballotCasted: false
+    }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated
+    },
+    pollClasses() {
+      return {
+        closed: this.ballotCasted
       }
     }
   },
+  watch: {
+    isAuthenticated() {
+      this.reset()
+    }
+  },
   beforeMount() {
-    axios.get('/console/lab/parties').then(response => {
-      this.lib.parties.push(...response.data.rows)
-    })
+    this.init()
   },
   methods: {
+    init() {
+      axios.get('/console/lab/parties').then(response => {
+        this.lib.parties = response.data.rows
+      })
+    },
+    reset() {
+      this.selectedOptionID = undefined
+      this.ballotCasted = false
+    },
+    showModalAuth() {
+      this.$store.dispatch('toggleModalAuth', {
+        value: true
+      })
+    },
     optionClasses(optionID) {
       return {
         selected: optionID === this.selectedOptionID
@@ -98,11 +93,20 @@ export default {
     flagStyle(partyAbbreviation) {
       let party = this.lib.parties.filter(party => party.abbreviation === partyAbbreviation).pop()
       return {
-        background: party.color
+        background: (party ? party.color : '#EAEAEA')
       }
     },
     handleSelect(optionID) {
-      this.selectedOptionID = optionID
+      if(!this.ballotCasted) {
+        this.selectedOptionID = optionID
+      }
+    },
+    castBallot() {
+      if(this.selectedOptionID) {
+        if(!this.ballotCasted) {
+          this.ballotCasted = true
+        }
+      }
     }
   }
 }
@@ -123,18 +127,29 @@ export default {
 }
 
 .poll {
-  max-width: 36rem;
-  margin: 2rem auto;
+  max-width: $bp-sm;
+  margin: 1rem auto;
+  @include bp-sm-down {
+    padding: 0 1rem;
+  }
 
   > .options {
     > .option {
       position: relative;
-      margin: 0.5rem;
+      margin: 0.5rem 0.5rem 1rem;
       cursor: pointer;
 
       > .image {
         width: 8rem;
         height: 8rem;
+        @include bp-sm-down {
+          width: 6rem;
+          height: 6rem;
+        }
+        @include bp-xs-down {
+          width: 5rem;
+          height: 5rem;
+        }
         border: 4px white solid;
         border-radius: 50%;
         background-color: rgba($color-park, 0.25);
@@ -150,10 +165,14 @@ export default {
         height: 2.5rem;
         border-radius: 50%;
         border: 2px $color-park solid;
+        @include bp-xs-down {
+          top: -0.5rem;
+          left: -0.5rem;
+        }
       }
       > .party-flag {
         position: absolute;
-        top: 6rem;
+        bottom: 1.75rem;
         right: 0;
       }
       > .name {
@@ -173,7 +192,18 @@ export default {
       }
     }
   }
-  > .submit {
+  > .submit,
+  > .login-prompt {
+    text-align: center;
+  }
+}
+.poll.closed {
+  > .options {
+    > .option {
+      > .select {
+        border-color: transparent;
+      }
+    }
   }
 }
 </style>
