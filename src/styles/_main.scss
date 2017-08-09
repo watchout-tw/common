@@ -107,6 +107,9 @@ a.a-block {
     }
   }
 }
+p.note {
+  font-size: 0.85rem;
+}
 
 .close {
   float: none;
@@ -133,6 +136,10 @@ a.a-block {
     &, &:hover, &:focus, &:active {
       color: white;
     }
+  }
+  &.small {
+    font-size: 1.5rem;
+    font-weight: 300;
   }
 }
 
@@ -421,9 +428,25 @@ section {
   }
 }
 
-.pgroup {
+.pgroup { // FIXME: to be deprecated
   width: 18rem;
 }
 .pgroup-center {
   margin: 0 auto;
+}
+.pg {
+  max-width: 18rem;
+  margin: 1rem 0;
+  &.small {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  &.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  > p:last-of-type {
+    margin-bottom: 0;
+  }
 }

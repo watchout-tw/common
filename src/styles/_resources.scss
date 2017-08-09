@@ -78,12 +78,19 @@ $font-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Robo
 
 // Bootstrap breakpoint
 
+$bp-xs: 320px;
 $bp-sm: 576px;
 $bp-md: 768px;
 $bp-lg-alt: 960px;
 $bp-lg: 992px;
 $bp-xl: 1200px;
-@mixin bp-sm-only {
+@mixin bp-xs-down {
+  @media (max-width: #{$bp-xs}) {
+    @content;
+  }
+}
+// bp-sm-only deprecated
+@mixin bp-sm-down {
   @media (max-width: #{$bp-sm - 1}) {
     @content;
   }
