@@ -334,6 +334,12 @@ input[type='checkbox']:not([class^="el"]) {
 .bg-park-light {
   background-color: rgba($color-park, 0.25);
 }
+.bg-poll {
+  background-color: $color-poll;
+}
+.bg-poll-light {
+  background-color: rgba($color-poll, 0.25);
+}
 .bg-lab {
   background-color: $color-lab;
 }
