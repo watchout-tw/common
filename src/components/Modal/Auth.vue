@@ -124,8 +124,9 @@ export default {
         alert(response.data.message)
       }).catch(error => {
         this.clearInputFields()
-        alert(error.response.data.message)
         console.error(error)
+        console.log(error.response.data)
+        alert(error.response.data.message)
       })
     },
     login() {
@@ -142,8 +143,9 @@ export default {
         this.toggleShow()
       }).catch(error => {
         this.clearInputFields()
-        alert(error.response.data.message)
         console.error(error)
+        console.log(error.response.data)
+        alert(error.response.data.message)
       })
     }
   }
