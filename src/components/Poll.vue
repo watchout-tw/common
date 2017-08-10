@@ -6,14 +6,14 @@
   </div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
-    <div class="tally-title" v-if="ballotCasted"><span>目前票數</span></div>
+    <div class="poll-tally" v-if="ballotCasted"><span class="underline">目前票數</span></div>
     <div class="options d-flex flex-wrap" v-if="initialized">
       <div v-for="option in config.options" :key="option.id" class="option" :class="optionClasses(option.id)" @click="handleSelect(option.id)">
         <div class="image" :style="optionImageStyle(option.id)"></div>
         <div class="select"></div>
         <div class="party-flag"><div class="flag" :style="flagStyle(option.party)"></div></div>
         <div class="name">{{ option.name }}</div>
-        <div class="tally" v-if="ballotCasted"><span class="value">{{ (tally[option.id] ? tally[option.id] : []).length }}</span><span class="unit">票</span></div>
+        <div class="tally" v-if="ballotCasted"><div class="value">{{ (tally[option.id] ? tally[option.id] : []).length }}</div></div>
       </div>
     </div>
     <div class="login-prompt" v-if="!isAuthenticated">
@@ -204,10 +204,11 @@ export default {
     padding: 0 1rem;
   }
   > .poll-body {
-    > .tally-title {
+    > .poll-tally {
+      margin-bottom: 1rem;
       text-align: center;
       color: $color-secondary-text-grey;
-      > span {
+      > .underline {
         padding-bottom: 2px;
         border-bottom: 1px $color-secondary-text-grey solid;
       }
@@ -218,6 +219,20 @@ export default {
         position: relative;
         margin: 0.5rem 0.5rem 1rem;
         cursor: pointer;
+
+        @mixin status-indicator {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          border: 2px $color-park solid;
+          @include bp-xs-down {
+            top: -0.5rem;
+            left: -0.5rem;
+          }
+        }
 
         > .image {
           width: 8rem;
@@ -238,25 +253,27 @@ export default {
           background-repeat: no-repeat;
         }
         > .select {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 2.5rem;
-          height: 2.5rem;
-          border-radius: 50%;
-          border: 2px $color-park solid;
-          @include bp-xs-down {
-            top: -0.5rem;
-            left: -0.5rem;
-          }
+          @include status-indicator;
         }
         > .party-flag {
           position: absolute;
-          bottom: 1.75rem;
-          right: 0;
+          bottom: 1.65rem;
+          right: -0.5rem;
         }
         > .name {
           text-align: center;
+        }
+        > .tally {
+          @include status-indicator;
+          background: $color-park;
+          text-align: center;
+          font-size: 1.25rem;
+          > .value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
         }
       }
       > .option.selected {
@@ -277,55 +294,11 @@ export default {
     }
   }
 }
-@mixin inline-block-middle {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .poll.ballot-casted {
   > .poll-body {
     > .options {
       > .option {
-        width: 50%;
-        @include bp-sm-down {
-          width: 100%;
-        }
-        margin: 0.25rem 0;
         cursor: default;
-
-        > .image,
-        > .name,
-        > .tally {
-          @include inline-block-middle;
-        }
-
-        > .image {
-          width: 4rem;
-          height: 4rem;
-        }
-        > .select {
-          top: -0.5rem;
-          left: -0.5rem;
-          border-color: transparent;
-        }
-        > .party-flag {
-          top: 1rem;
-          left: 3rem;
-        }
-        > .name {
-          margin-left: 1rem;
-        }
-        > .tally {
-          > * {
-            @include inline-block-middle;
-          }
-          > .value {
-            font-size: 1.25rem;
-          }
-          > .unit {
-            margin-left: 0.125rem;
-          }
-        }
       }
     }
   }
