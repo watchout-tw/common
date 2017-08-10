@@ -4,12 +4,14 @@
   <div class="pg">
     <p>{{ config.question }}</p>
   </div>
+  <div class="tally-title" v-if="ballotCasted"><span>目前票數</span></div>
   <div class="options d-flex flex-wrap">
     <div v-for="option in config.options" :key="option.id" class="option" :class="optionClasses(option.id)" @click="handleSelect(option.id)">
       <div class="image" :style="optionImageStyle(option.id)"></div>
       <div class="select"></div>
       <div class="party-flag"><div class="flag" :style="flagStyle(option.party)"></div></div>
       <div class="name">{{ option.name }}</div>
+      <div class="tally" v-if="ballotCasted"><span class="value">{{ tally[option.id] }}</span><span class="unit">票</span></div>
     </div>
   </div>
   <div class="submit" v-if="isAuthenticated && !ballotCasted">
@@ -35,15 +37,39 @@ import axios from 'axios'
 Vue.use(Vuex)
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
+let pollSampleTally = {
+  '鄭運鵬': 20,
+  '陳賴素美': 52,
+  '陳學聖': 64,
+  '鄭寶清': 2,
+  '呂玉玲': 0,
+  '趙正宇': 87,
+  '吳志揚': 120
+} // GET /park/citizen_speeches?target_source_entity=Poll&target_source_id=1
+
 export default {
   props: ['config'],
   data() {
     return {
       lib: {
-        parties: []
+        parties: [ // FIXME: get list of party from core instead of hard-coding them
+          {
+            abbreviation: '無黨籍',
+            color: '#EAEAEA'
+          },
+          {
+            abbreviation: '國民黨',
+            color: '#000095'
+          },
+          {
+            abbreviation: '民進黨',
+            color: '#009A00'
+          }
+        ]
       },
       selectedOptionID: undefined,
-      ballotCasted: false
+      ballotCasted: false,
+      tally: pollSampleTally
     }
   },
   computed: {
@@ -52,7 +78,8 @@ export default {
     },
     pollClasses() {
       return {
-        closed: this.ballotCasted
+        'ballot-casted': this.ballotCasted,
+        closed: this.config.ballotClosed
       }
     }
   },
@@ -65,10 +92,7 @@ export default {
     this.init()
   },
   methods: {
-    init() {
-      axios.get('/console/lab/parties').then(response => {
-        this.lib.parties = response.data.rows
-      })
+    init() { // FIXME: get list of party from core
     },
     reset() {
       this.selectedOptionID = undefined
@@ -116,9 +140,12 @@ export default {
 @import '../styles/resources';
 
 .party-flag {
+  width: 2rem;
+  height: 1.75rem;
+
   > .flag {
-    width: 2rem;
-    height: 1.75rem;
+    width: 100%;
+    height: 100%;
     display: block;
     border: none;
   	transform: skew(0, -20deg) scale(0.65);
@@ -131,6 +158,15 @@ export default {
   margin: 1rem auto;
   @include bp-sm-down {
     padding: 0 1rem;
+  }
+
+  > .tally-title {
+    text-align: center;
+    color: $color-secondary-text-grey;
+    > span {
+      padding-bottom: 2px;
+      border-bottom: 1px $color-secondary-text-grey solid;
+    }
   }
 
   > .options {
@@ -185,7 +221,6 @@ export default {
       }
       > .select {
         background: $color-park;
-
         &:before {
           @include checkmark(12px, white);
         }
@@ -197,11 +232,53 @@ export default {
     text-align: center;
   }
 }
-.poll.closed {
+@mixin inline-block-middle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.poll.ballot-casted {
   > .options {
     > .option {
+      width: 50%;
+      @include bp-sm-down {
+        width: 100%;
+      }
+      margin: 0.25rem 0;
+      cursor: default;
+
+      > .image,
+      > .name,
+      > .tally {
+        @include inline-block-middle;
+      }
+
+      > .image {
+        width: 4rem;
+        height: 4rem;
+      }
       > .select {
+        top: -0.5rem;
+        left: -0.5rem;
         border-color: transparent;
+      }
+      > .party-flag {
+        top: 1rem;
+        left: 3rem;
+      }
+      > .name {
+        margin-left: 1rem;
+      }
+      > .tally {
+        > * {
+          @include inline-block-middle;
+        }
+        > .value {
+          font-size: 1.25rem;
+        }
+        > .unit {
+          margin-left: 0.125rem;
+        }
       }
     }
   }
