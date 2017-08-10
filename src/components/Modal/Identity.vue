@@ -4,7 +4,7 @@
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
         <div class="content">
-          I am who I am.
+          Hello <strong>{{ handle }}</strong> 🖖
         </div>
       </div>
     </div>
@@ -19,6 +19,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default {
+  computed: {
+    handle() {
+      return localStorage.getItem('watchout-citizen-handle')
+    }
+  },
   methods: {
     toggleShow() {
       this.$store.dispatch('toggleModalIdentity', {

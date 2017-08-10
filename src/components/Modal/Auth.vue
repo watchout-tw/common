@@ -81,7 +81,9 @@ export default {
         value: !this.$store.state.modalAuthIsShown
       })
     },
-    loginSuccessful() {
+    loginSuccessful(response) {
+      localStorage.setItem('watchout-token', response.data.token)
+      localStorage.setItem('watchout-citizen-handle', response.data.handle)
       this.$store.dispatch('toggleIsAuthenticated', {
         value: true
       })
@@ -130,11 +132,10 @@ export default {
       var loginObj = /^.+@.+$/.test(this.loginAccount) ? { email: this.loginAccount } : { handle: this.loginAccount }
       loginObj.password = this.loginPassword
       axios.post('/auth/login', loginObj).then(response => {
-        localStorage.setItem('watchout-token', response.data.token)
-        this.loginSuccessful()
+        this.loginSuccessful(response)
         this.toggleShow()
       }).catch(error => {
-        console.log(error)
+        console.error(error)
       })
     }
   }
