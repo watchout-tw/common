@@ -76,6 +76,10 @@ export default {
     }
   },
   methods: {
+    clearInputFields() {
+      this.loginPassword = undefined
+      this.joinPassword = undefined
+    },
     toggleShow() {
       this.$store.dispatch('toggleModalAuth', {
         value: !this.$store.state.modalAuthIsShown
@@ -119,8 +123,9 @@ export default {
       axios.post('/auth/join', citizen).then(response => {
         alert(response.data.message)
       }).catch(error => {
-        console.log(error)
-        alert('失敗了，再試一次？')
+        this.clearInputFields()
+        alert(error.response.data.message)
+        console.error(error)
       })
     },
     login() {
@@ -132,9 +137,12 @@ export default {
       var loginObj = /^.+@.+$/.test(this.loginAccount) ? { email: this.loginAccount } : { handle: this.loginAccount }
       loginObj.password = this.loginPassword
       axios.post('/auth/login', loginObj).then(response => {
+        alert('歡迎回到沃草共有地')
         this.loginSuccessful(response)
         this.toggleShow()
       }).catch(error => {
+        this.clearInputFields()
+        alert(error.response.data.message)
         console.error(error)
       })
     }
