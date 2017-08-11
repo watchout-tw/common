@@ -1,8 +1,9 @@
 <template>
 <div class="poll" :class="pollClasses">
   <h1 class="small">{{ config.name }}</h1>
-  <div class="pg">
-    <p>{{ config.question }}</p>
+  <div class="paragraphs">
+    <p v-if="!ballotCasted">{{ config.question }}</p>
+    <p v-else>感謝你參與這次的沃草民調，你的選擇是<strong>{{ selectedOptionID }}</strong>。</p>
   </div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
@@ -16,17 +17,29 @@
         <div class="tally" v-if="ballotCasted"><div class="value" v-html="optionTally(option.id)"></div></div>
       </div>
     </div>
-    <div class="login-prompt" v-if="!isAuthenticated">
-      <div class="pg center small">
+    <div class="login" v-if="!isAuthenticated">
+      <div class="paragraphs center small">
         <p class="note">必須先成為草民或登入才能投票哦。</p>
       </div>
       <button class="park floating" @click="showModalAuth">成為草民或登入</button>
     </div>
     <div class="submit" v-else-if="!ballotCasted">
-      <div class="pg center small">
+      <div class="paragraphs center small">
         <p class="note">請想清楚再投票，送出後無法更改。</p>
       </div>
       <button class="park floating" @click="castBallot">投下你的一票</button>
+    </div>
+    <div class="share" v-else>
+      <div class="buttons">
+        <a class="button-wrapper" :href="config.related_event.participation_link" target="_blank"><button class="park floating">我要參加{{ config.related_event.name }}</button></a>
+        <a class="button-wrapper" :href="pollShareLink" target="_blank"><button class="park floating">我要分享這次民調</button></a>
+      </div>
+    </div>
+    <div class="description">
+      <h2 class="small">關於這次投票</h2>
+      <div class="paragraphs">
+        <p>{{ config.description }}</p>
+      </div>
     </div>
   </div>
 </div>
@@ -69,6 +82,9 @@ export default {
         'ballot-casted': this.ballotCasted,
         'closed': this.config.ballotClosed
       }
+    },
+    pollShareLink() {
+      return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/polls/${this.config.slug}`
     }
   },
   watch: {
@@ -238,7 +254,7 @@ export default {
             width: 5rem;
             height: 5rem;
           }
-          border: 4px white solid;
+          border: 0.3125rem white solid;
           border-radius: 50%;
           background-color: rgba($color-park, 0.25);
           background-size: cover;
@@ -251,7 +267,7 @@ export default {
         > .party-flag {
           position: absolute;
           bottom: 1.65rem;
-          right: -0.5rem;
+          right: -0.45rem;
         }
         > .name {
           text-align: center;
@@ -281,9 +297,16 @@ export default {
         }
       }
     }
+    > .login,
     > .submit,
-    > .login-prompt {
+    > .share {
       text-align: center;
+    }
+    > .share {
+      margin: 1rem 0;
+    }
+    > .description {
+      margin: 4rem 0;
     }
   }
 }

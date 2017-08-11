@@ -66,7 +66,7 @@ export default {
         slug: 'taoyuan-1',
         name: '桃園立委給問嗎',
         question: '這些桃園的立法委員，你想問誰？',
-        description: undefined,
+        description: '沃草將會邀請得票數前四位的委員參加九月的《桃園立委給問嗎》。',
         options: [
           {
             id: '鄭運鵬',
@@ -110,7 +110,14 @@ export default {
             party: '國民黨',
             district: '全國不分區'
           }
-        ]
+        ],
+        related_event: {
+          id: 16,
+          type: 'physical',
+          name: '桃園立委給問嗎',
+          link: 'https://ask.watchout.tw',
+          participation_link: 'https://ask.watchout.tw'
+        }
       }
     }
   }

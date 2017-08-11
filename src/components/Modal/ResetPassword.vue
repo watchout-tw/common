@@ -5,14 +5,14 @@
       <div class="modal-dialog">
         <div class="before" v-if="!submitted">
           <h3>忘記密碼了嗎？</h3>
-          <div class="pg small">
+          <div class="paragraphs small">
             <p class="note">請回想成為草民時填入的Email。</p>
           </div>
           <div class="field"><input type="email" name="email" v-model="registrationEmail" placeholder="Email" class="full-width" /></div>
           <div class="field"><button class="park floating" @click="submit">重設密碼</button></div>
         </div>
         <div class="after" v-else>
-          <div class="pg tight">
+          <div class="paragraphs tight">
             <p>我們已經將密碼重設Email寄到剛剛填入的信箱。</p>
           </div>
         </div>

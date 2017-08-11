@@ -442,8 +442,8 @@ section {
 .pgroup-center {
   margin: 0 auto;
 }
-.pg {
-  max-width: 18rem;
+.paragraphs {
+  // max-width: 18rem;
   margin: 1rem 0;
   &.small {
     margin-top: 0.5rem;
@@ -460,5 +460,13 @@ section {
 
   > p:last-of-type {
     margin-bottom: 0;
+  }
+}
+.buttons {
+  > button,
+  > a.button-wrapper {
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
   }
 }
