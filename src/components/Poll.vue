@@ -13,7 +13,7 @@
         <div class="select"></div>
         <div class="party-flag"><div class="flag" :style="flagStyle(option.party)"></div></div>
         <div class="name">{{ option.name }}</div>
-        <div class="tally" v-if="ballotCasted"><div class="value">{{ (tally[option.id] ? tally[option.id] : []).length }}</div></div>
+        <div class="tally" v-if="ballotCasted"><div class="value" v-html="optionTally(option.id)"></div></div>
       </div>
     </div>
     <div class="login-prompt" v-if="!isAuthenticated">
@@ -42,36 +42,19 @@ Vue.use(Vuex)
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 util.authenticateAxios()
 
-const _collection = require('lodash/collection')
-
-const parties = [ // FIXME: get list of party from core instead of hard-coding them
-  {
-    abbreviation: '無黨籍',
-    color: '#EAEAEA'
-  },
-  {
-    abbreviation: '國民黨',
-    color: '#000095'
-  },
-  {
-    abbreviation: '民進黨',
-    color: '#009A00'
-  }
-]
-
 export default {
   props: ['config'],
   data() {
     return {
-      initialized: false,
       lib: {
-        parties
+        parties: []
       },
+      initialized: false,
       entity: 'Poll',
       speechTargetID: undefined,
       selectedOptionID: undefined,
       ballotCasted: false,
-      tally: {}
+      tally: []
     }
   },
   computed: {
@@ -95,8 +78,8 @@ export default {
     },
     ballotCasted() {
       // get tally
-      axios.get(`/park/citizen_speeches?target_source_entity=${this.entity}&target_source_id=${this.config.id}`).then(response => {
-        this.tally = _collection.groupBy(response.data.rows, 'content')
+      axios.get(`/park/polls/${this.config.id}`).then(response => {
+        this.tally = response.data.tally
       }).catch(util.handleThatError)
     }
   },
@@ -107,8 +90,11 @@ export default {
     init() {
       this.selectedOptionID = undefined
       this.ballotCasted = false
-      this.tally = {}
-      // FIXME: get list of party from core
+      this.tally = []
+      // get list of party
+      axios.get('/c0ngress/parties').then(response => {
+        this.lib.parties = response.data.rows
+      })
 
       if(this.isAuthenticated) {
         // get speech target ID for ballot registration
@@ -119,17 +105,15 @@ export default {
         }
 
         // check if citizen has already casted ballot
-        if(this.isAuthenticated && this.citizenHandle) {
-          axios.get(`/park/citizen_speeches?citizen_handle=${this.citizenHandle}&target_source_entity=${this.entity}&target_source_id=${this.config.id}`).then(response => {
-            let speeches = response.data.rows
-            if(speeches.length > 0) {
-              let speech = speeches[speeches.length - 1]
-              this.ballotCasted = true
-              this.selectedOptionID = speech.content
-            }
-            this.initialized = true
-          }).catch(util.handleThatError)
-        }
+        axios.get(`/citizen/speeches?target_source_entity=${this.entity}&target_source_id=${this.config.id}`).then(response => {
+          let speeches = response.data.rows
+          if(speeches.length > 0) {
+            let speech = speeches[speeches.length - 1]
+            this.ballotCasted = true
+            this.selectedOptionID = speech.content
+          }
+          this.initialized = true
+        }).catch(util.handleThatError)
       } else {
         this.initialized = true
       }
@@ -149,6 +133,15 @@ export default {
       return {
         backgroundImage: `url(${url})`
       }
+    },
+    optionTally(optionID) {
+      if(this.tally.length > 0) {
+        let match = this.tally.filter(item => item.content === optionID)
+        if(match.length > 0) {
+          return match.pop().count
+        }
+      }
+      return 0
     },
     flagStyle(partyAbbreviation) {
       let party = this.lib.parties.filter(party => party.abbreviation === partyAbbreviation).pop()
@@ -170,7 +163,7 @@ export default {
             type: 'ballot',
             content: this.selectedOptionID
           }
-          axios.post('/park/citizen_speeches', speechObj).then(response => {
+          axios.post('/citizen/speeches', speechObj).then(response => {
             this.ballotCasted = true
           }).catch(util.handleThatError)
         }
