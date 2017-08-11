@@ -1,6 +1,6 @@
 <template>
 <transition name="modal">
-  <div id="modal-reset-password" class="modal-mask">
+  <div id="modal-lost-pwd" class="modal-mask">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
         <div class="before" v-if="!submitted">
@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     toggleShow() {
-      this.$store.dispatch('toggleModalResetPassword', {
-        value: !this.$store.state.modalResetPasswordIsShown
+      this.$store.dispatch('toggleModalLostPwd', {
+        value: !this.$store.state.modalLostPwdIsShown
       })
     },
     submit() {
@@ -54,7 +54,7 @@ export default {
 <style lang="scss">
 @import '../../styles/resources';
 
-#modal-reset-password {
+#modal-lost-pwd {
   .before,
   .after {
     background: rgba($color-park, 0.32);

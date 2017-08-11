@@ -10,8 +10,8 @@ export default {
   [types.TOGGLE_MODAL_AUTH_ACTIVE_CARD](state, mutateObj) {
     state.modalAuthActiveCard = mutateObj.value
   },
-  [types.TOGGLE_MODAL_RESET_PASSWORD](state, mutateObj) {
-    state.modalResetPasswordIsShown = mutateObj.value
+  [types.TOGGLE_MODAL_LOST_PWD](state, mutateObj) {
+    state.modalLostPwdIsShown = mutateObj.value
   },
   [types.TOGGLE_MODAL_IDENTITY](state, mutateObj) {
     state.modalIdentityIsShown = mutateObj.value

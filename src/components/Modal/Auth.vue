@@ -35,8 +35,8 @@
           <div class="card dark active">
             <div class="card-body">
               <div class="padding">
-                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="resetPassword">我忘記密碼了⋯</a></label>
-                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="facebookLogin">你在找Facebook登入嗎？</a></label>
+                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showLostPwd">我忘記密碼了⋯</a></label>
+                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showFacebookLogin">你在找Facebook登入嗎？</a></label>
               </div>
             </div>
           </div>
@@ -96,15 +96,15 @@ export default {
         value: true
       })
     },
-    resetPassword() {
+    showLostPwd() {
       this.$store.dispatch('toggleModalAuth', {
         value: false
       })
-      this.$store.dispatch('toggleModalResetPassword', {
+      this.$store.dispatch('toggleModalLostPwd', {
         value: true
       })
     },
-    facebookLogin() {
+    showFacebookLogin() {
       alert('什麼是Facebook？')
     },
     generateRandomHandle() {

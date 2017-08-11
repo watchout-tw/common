@@ -10,8 +10,8 @@ export default {
   toggleModalAuthActiveCard({ commit }, reqObj) {
     commit(types.TOGGLE_MODAL_AUTH_ACTIVE_CARD, reqObj)
   },
-  toggleModalResetPassword({ commit }, reqObj) {
-    commit(types.TOGGLE_MODAL_RESET_PASSWORD, reqObj)
+  toggleModalLostPwd({ commit }, reqObj) {
+    commit(types.TOGGLE_MODAL_LOST_PWD, reqObj)
   },
   toggleModalIdentity({ commit }, reqObj) {
     commit(types.TOGGLE_MODAL_IDENTITY, reqObj)
