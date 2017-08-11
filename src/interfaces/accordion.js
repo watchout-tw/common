@@ -1,12 +1,12 @@
 export default {
   data() {
-    return {
-      activeCardID: undefined
-    }
+    // FIXME: activeCardID should be part of this interface?
   },
   methods: {
     activateCard(cardID) {
-      this.activeCardID = cardID
+      this.$store.dispatch('toggleModalAuthActiveCard', {
+        value: cardID
+      })
     },
     cardClasses(cardID) {
       return {

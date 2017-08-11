@@ -303,7 +303,7 @@ export default {
       text-align: center;
     }
     > .share {
-      margin: 1rem 0;
+      margin: 0.5rem 0;
     }
     > .description {
       margin: 4rem 0;

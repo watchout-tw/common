@@ -66,13 +66,17 @@ export default {
   data() {
     return {
       dataStore: dataStore,
-      activeCardID: 'join',
       loginAccount: undefined,
       loginPassword: undefined,
       joinEmail: undefined,
       joinHandle: undefined,
       joinPassword: undefined,
       iAgree: false
+    }
+  },
+  computed: {
+    activeCardID() {
+      return this.$store.state.modalAuthActiveCard
     }
   },
   methods: {
