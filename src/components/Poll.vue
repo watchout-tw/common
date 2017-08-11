@@ -20,13 +20,13 @@
       <div class="pg center small">
         <p class="note">必須先成為草民或登入才能投票哦。</p>
       </div>
-      <button class="park" @click="showModalAuth">成為草民或登入</button>
+      <button class="park floating" @click="showModalAuth">成為草民或登入</button>
     </div>
     <div class="submit" v-else-if="!ballotCasted">
       <div class="pg center small">
         <p class="note">請想清楚再投票，送出後無法更改。</p>
       </div>
-      <button class="park" @click="castBallot">投下你的一票</button>
+      <button class="park floating" @click="castBallot">投下你的一票</button>
     </div>
   </div>
 </div>

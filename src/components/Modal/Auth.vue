@@ -10,11 +10,11 @@
             </a>
             <div class="card-body">
               <div class="padding">
-                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small" @click="generateRandomHandle">隨機</button></div>
+                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small floating" @click="generateRandomHandle">隨機</button></div>
                 <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
                 <div class="field d-flex justify-content-between align-items-center">
-                  <button class="park" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
+                  <button class="park floating" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@
               <div class="padding">
                 <div class="field"><input type="text" name="id-or-email" v-model="loginAccount" placeholder="草民代號或Email" class="full-width" /></div>
                 <div class="field"><input type="password" name="password" v-model="loginPassword" placeholder="密碼" class="full-width" /></div>
-                <div class="field"><button class="park"@click="login">登入</button></div>
+                <div class="field"><button class="park floating" @click="login">登入</button></div>
               </div>
             </div>
           </div>

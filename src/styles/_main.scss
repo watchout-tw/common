@@ -194,9 +194,11 @@ button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next i
     background: $color-park;
     border-color: $color-park-darker;
   }
-  @include shadow-minimum;
-  &:hover {
-    @include shadow;
+  &.floating {
+    @include shadow-minimum;
+    &:hover {
+      @include shadow;
+    }
   }
 }
 input:not(.full-width) + button:not([class^="el"]) {

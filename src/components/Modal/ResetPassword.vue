@@ -9,7 +9,7 @@
             <p class="note">請回想成為草民時填入的Email。</p>
           </div>
           <div class="field"><input type="email" name="email" v-model="registrationEmail" placeholder="Email" class="full-width" /></div>
-          <div class="field"><button class="park"@click="submit">重設密碼</button></div>
+          <div class="field"><button class="park floating" @click="submit">重設密碼</button></div>
         </div>
         <div class="after" v-else>
           <div class="pg tight">
