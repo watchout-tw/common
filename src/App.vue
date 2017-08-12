@@ -3,6 +3,7 @@
   <NavigationWithIdentity :channel="channel"></NavigationWithIdentity>
   <ModalAuth v-if="modalAuthIsShown"></ModalAuth>
   <ModalLostPwd v-if="modalLostPwdIsShown"></ModalLostPwd>
+  <ModalResetPwd v-if="modalResetPwdIsShown"></ModalResetPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
   <Poll :config="pollSampleConfig"></Poll>
   <FooterStandard></FooterStandard>
@@ -17,6 +18,7 @@ import dataStore from './lib/dataStore'
 import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
 import ModalLostPwd from './components/Modal/LostPwd'
+import ModalResetPwd from './components/Modal/ResetPwd'
 import ModalIdentity from './components/Modal/Identity'
 import FooterStandard from './components/Footer/Standard'
 import Poll from './components/Poll'
@@ -31,6 +33,7 @@ export default {
     NavigationWithIdentity,
     ModalAuth,
     ModalLostPwd,
+    ModalResetPwd,
     ModalIdentity,
     FooterStandard,
     Poll,
@@ -45,6 +48,9 @@ export default {
     },
     modalLostPwdIsShown() {
       return this.$store.state.modalLostPwdIsShown
+    },
+    modalResetPwdIsShown() {
+      return this.$store.state.modalResetPwdIsShown
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown

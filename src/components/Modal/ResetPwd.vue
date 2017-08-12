@@ -1,19 +1,20 @@
 <template>
 <transition name="modal">
-  <div id="modal-lost-pwd" class="modal-mask">
+  <div id="modal-reset-pwd" class="modal-mask">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
         <form class="before" v-if="!submitted">
-          <h3>忘記密碼了嗎？</h3>
+          <h3>重新設定密碼</h3>
           <div class="paragraphs small">
-            <p class="note">請回想成為草民時填入的Email。</p>
+            <p class="note">這次不要再忘記囉。</p>
           </div>
-          <div class="field"><input type="email" name="email" v-model="registrationEmail" placeholder="Email" class="full-width" /></div>
-          <div class="field"><button class="park floating" @click="submit">確定</button></div>
+          <div class="field"><input type="password" name="new-password" v-model="newPassword" placeholder="新密碼" class="full-width" /></div>
+          <div class="field"><input type="password" name="confirm-password" v-model="confirmPassword" placeholder="確認密碼" class="full-width" /></div>
+          <div class="field"><button class="park floating" @click="submit">設定密碼</button></div>
         </form>
         <div class="after" v-else>
           <div class="paragraphs tight">
-            <p>我們已經將密碼重設Email寄到剛剛填入的信箱。</p>
+            <p>密碼設定完成。</p>
           </div>
         </div>
       </div>
@@ -30,18 +31,15 @@ export default {
   data() {
     return {
       modal: {
-        key: 'LostPwd'
+        key: 'ResetPwd'
       },
-      registrationEmail: undefined,
+      newPassword: undefined,
+      confirmPassword: undefined,
       submitted: false
     }
   },
   methods: {
     submit() {
-      if(this.registrationEmail) {
-        // API call here
-        this.submitted = true
-      }
     }
   }
 }
@@ -50,7 +48,7 @@ export default {
 <style lang="scss">
 @import '../../styles/resources';
 
-#modal-lost-pwd {
+#modal-reset-pwd {
   .before,
   .after {
     background: rgba($color-park, 0.32);

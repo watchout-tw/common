@@ -4,9 +4,13 @@ export default {
   },
   methods: {
     activateCard(cardID) {
-      this.$store.dispatch('toggleModalAuthActiveCard', {
-        value: cardID
-      })
+      if(this.accordion.store) {
+        this.$store.dispatch(`toggle${this.accordion.key}ActiveCard`, {
+          value: cardID
+        })
+      } else {
+        this.activeCardID = cardID
+      }
     },
     cardClasses(cardID) {
       return {

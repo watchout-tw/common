@@ -13,22 +13,20 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
+import modal from '../../interfaces/modal'
 
 export default {
+  mixins: [modal],
+  data() {
+    return {
+      modal: {
+        key: 'Identity'
+      }
+    }
+  },
   computed: {
     handle() {
       return localStorage.getItem('watchout-citizen-handle')
-    }
-  },
-  methods: {
-    toggleShow() {
-      this.$store.dispatch('toggleModalIdentity', {
-        value: !this.$store.state.modalIdentityIsShown
-      })
     }
   }
 }

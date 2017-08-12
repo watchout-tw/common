@@ -13,6 +13,9 @@ export default {
   toggleModalLostPwd({ commit }, reqObj) {
     commit(types.TOGGLE_MODAL_LOST_PWD, reqObj)
   },
+  toggleModalResetPwd({ commit }, reqObj) {
+    commit(types.TOGGLE_MODAL_RESET_PWD, reqObj)
+  },
   toggleModalIdentity({ commit }, reqObj) {
     commit(types.TOGGLE_MODAL_IDENTITY, reqObj)
   }

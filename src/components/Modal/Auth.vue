@@ -48,13 +48,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuex from 'vuex'
 import axios from 'axios'
 import dataStore from '../../lib/dataStore'
 import accordion from '../../interfaces/accordion'
-
-Vue.use(Vuex)
+import modal from '../../interfaces/modal'
 
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
@@ -62,9 +59,16 @@ const nameGenerator = require('project-name-generator')
 
 export default {
   name: 'modal-auth',
-  mixins: [accordion],
+  mixins: [accordion, modal],
   data() {
     return {
+      modal: {
+        key: 'Auth'
+      },
+      accordion: {
+        store: true,
+        key: 'ModalAuth'
+      },
       dataStore: dataStore,
       loginAccount: undefined,
       loginPassword: undefined,
@@ -83,11 +87,6 @@ export default {
     clearInputFields() {
       this.loginPassword = undefined
       this.joinPassword = undefined
-    },
-    toggleShow() {
-      this.$store.dispatch('toggleModalAuth', {
-        value: !this.$store.state.modalAuthIsShown
-      })
     },
     loginSuccessful(response) {
       localStorage.setItem('watchout-token', response.data.token)

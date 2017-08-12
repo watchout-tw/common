@@ -3,5 +3,6 @@ export default {
   modalAuthIsShown: false,
   modalAuthActiveCard: 'join',
   modalLostPwdIsShown: false,
+  modalResetPwdIsShown: false,
   modalIdentityIsShown: false
 }
