@@ -1,6 +1,6 @@
 <template>
 <transition name="modal">
-  <div id="modal-identity" class="modal-mask">
+  <div id="modal-identity" class="modal-mask" @keyup.esc="toggleShow">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
         <div class="content">

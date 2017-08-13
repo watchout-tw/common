@@ -1,15 +1,15 @@
 <template>
 <transition name="modal">
-  <div id="modal-lost-pwd" class="modal-mask">
+  <div id="modal-lost-pwd" class="modal-mask" @keyup.esc="toggleShow">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
-        <form class="before" v-if="!submitted">
+        <form class="before" v-if="!submitted" @submit.prevent="submit">
           <h3>忘記密碼了嗎？</h3>
           <div class="paragraphs small">
             <p class="note">請回想成為草民時填入的Email。</p>
           </div>
           <div class="field"><input type="email" name="email" v-model="registrationEmail" placeholder="Email" class="full-width" /></div>
-          <div class="field"><button class="park floating" @click="submit">確定</button></div>
+          <div class="field"><button class="park floating">確定</button></div>
         </form>
         <div class="after" v-else>
           <div class="paragraphs tight">
@@ -41,6 +41,8 @@ export default {
       if(this.registrationEmail) {
         // API call here
         this.submitted = true
+      } else {
+        alert('你必須輸入有效的Email')
       }
     }
   }

@@ -1,16 +1,16 @@
 <template>
 <transition name="modal">
-  <div id="modal-reset-pwd" class="modal-mask">
+  <div id="modal-reset-pwd" class="modal-mask" @keyup.esc="toggleShow">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
-        <form class="before" v-if="!submitted">
+        <form class="before" v-if="!submitted" @submit.prevent="submit">
           <h3>重新設定密碼</h3>
           <div class="paragraphs small">
             <p class="note">這次不要再忘記囉。</p>
           </div>
           <div class="field"><input type="password" name="new-password" v-model="newPassword" placeholder="新密碼" class="full-width" /></div>
           <div class="field"><input type="password" name="confirm-password" v-model="confirmPassword" placeholder="確認密碼" class="full-width" /></div>
-          <div class="field"><button class="park floating" @click="submit">設定密碼</button></div>
+          <div class="field"><button class="park floating">設定密碼</button></div>
         </form>
         <div class="after" v-else>
           <div class="paragraphs tight">
@@ -40,6 +40,12 @@ export default {
   },
   methods: {
     submit() {
+      if(this.newPassword && this.confirmPassword === this.newPassword) {
+        // API call here
+        this.submitted = true
+      } else {
+        alert('你必須輸入兩次一致的新密碼')
+      }
     }
   }
 }

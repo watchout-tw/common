@@ -1,6 +1,6 @@
 <template>
 <transition name="modal">
-  <div id="modal-auth" class="modal-mask">
+  <div id="modal-auth" class="modal-mask" @keyup.esc="toggleShow">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
         <div class="accordion">
@@ -8,14 +8,12 @@
             <a class="card-head" @click.stop.prevent="activateCard('join')">
               <h3>成為草民</h3>
             </a>
-            <div class="card-body">
-              <div class="padding">
-                <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small floating" @click="generateRandomHandle">隨機</button></div>
-                <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
-                <div class="field d-flex justify-content-between align-items-center">
-                  <button class="park floating" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
-                </div>
+            <div class="card-body" @keyup.enter.prevent="join">
+              <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small floating" @click="generateRandomHandle">隨機</button></div>
+              <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
+              <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
+              <div class="field d-flex justify-content-between align-items-center">
+                <button class="park floating" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
               </div>
             </div>
           </div>
@@ -24,20 +22,16 @@
               <label class="text-color-park">已經有帳號了？</label>
               <h3>草民登入</h3>
             </a>
-            <div class="card-body">
-              <div class="padding">
-                <div class="field"><input type="text" name="id-or-email" v-model="loginAccount" placeholder="草民代號或Email" class="full-width" /></div>
-                <div class="field"><input type="password" name="password" v-model="loginPassword" placeholder="密碼" class="full-width" /></div>
-                <div class="field"><button class="park floating" @click="login">登入</button></div>
-              </div>
+            <div class="card-body" @keyup.enter.prevent="login">
+              <div class="field"><input type="text" name="id-or-email" v-model="loginAccount" placeholder="草民代號或Email" class="full-width" /></div>
+              <div class="field"><input type="password" name="password" v-model="loginPassword" placeholder="密碼" class="full-width" /></div>
+              <div class="field"><button class="park floating" @click="login">登入</button></div>
             </div>
           </div>
           <div class="card dark active">
             <div class="card-body">
-              <div class="padding">
-                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showLostPwd">我忘記密碼了⋯</a></label>
-                <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showFacebookLogin">你在找Facebook登入嗎？</a></label>
-              </div>
+              <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showLostPwd">我忘記密碼了⋯</a></label>
+              <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showFacebookLogin">你在找Facebook登入嗎？</a></label>
             </div>
           </div>
         </div>
@@ -106,10 +100,12 @@ export default {
     showFacebookLogin() {
       alert('什麼是Facebook？')
     },
-    generateRandomHandle() {
+    generateRandomHandle(event) {
+      console.log('randhandle', event)
       this.joinHandle = nameGenerator({ words: Math.ceil(Math.random() * 3) + 1 }).raw.join('_')
     },
-    join() {
+    join(event) {
+      console.log('join', event)
       if(!(this.joinEmail && this.joinHandle && this.joinPassword)) {
         alert('你必須填寫草民代號、Email及密碼')
         return
@@ -162,8 +158,15 @@ export default {
   > .card-body {
     max-height: 0;
     overflow: hidden;
+    > .field:last-of-type {
+      padding-bottom: 1rem;
+    }
   }
   &.active {
+    padding-bottom: 1rem;
+    > .card-head {
+      padding-bottom: 0.5rem;
+    }
     > .card-body {
       max-height: none;
     }
