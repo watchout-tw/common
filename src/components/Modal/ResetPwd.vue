@@ -59,8 +59,8 @@ export default {
           axios.post('/citizen/reset_password', data, {
             headers
           }).then(response => {
-            console.log(response)
             this.submitted = true
+            this.$router.replace({ query: {} })
           }).catch(error => {
             this.clearInputFields()
             console.error(error)

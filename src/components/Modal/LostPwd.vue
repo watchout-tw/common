@@ -49,7 +49,6 @@ export default {
           email: this.registrationEmail
         }
         axios.post('/citizen/request_reset_password', body).then(response => {
-          console.log(response)
           this.submitted = true
         }).catch(error => {
           this.clearInputFields()
