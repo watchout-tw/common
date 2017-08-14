@@ -12,8 +12,13 @@
       <div v-for="option in config.options" :key="option.id" class="option" :class="optionClasses(option.id)" @click="handleSelect(option.id)">
         <div class="image" :style="optionImageStyle(option.id)"></div>
         <div class="select"></div>
-        <div class="party-flag"><div class="flag" :style="flagStyle(option.party)"></div></div>
+        <div class="party-flag" v-if="isPeople"><div class="flag" :style="flagStyle(option.party)"></div></div>
         <div class="name">{{ option.name }}</div>
+        <div class="more" v-if="isPeople">
+          <div class="zone" v-if="option.zone">{{ option.zone }}</div>
+          <div class="district" v-if="option.district">{{ option.district }}</div>
+          <div class="neighborhoods" v-if="option.neighborhoods"><span class="neighborhood" v-for="neighborhood in option.neighborhoods" :key="neighborhood">{{ neighborhood }}</span></div>
+        </div>
         <div class="tally" v-if="ballotCasted"><div class="value" v-html="optionTally(option.id)"></div></div>
       </div>
     </div>
@@ -76,6 +81,9 @@ export default {
     },
     citizenHandle() {
       return localStorage.getItem('watchout-citizen-handle')
+    },
+    isPeople() {
+      return this.config.type === 'people'
     },
     pollClasses() {
       return {
@@ -204,6 +212,10 @@ export default {
   	transform: skew(0, -20deg) scale(0.65);
     background: red;
   }
+  > .name {
+    font-size: 0.65rem;
+    color: $color-secondary-text-grey;
+  }
 }
 
 .poll {
@@ -226,6 +238,17 @@ export default {
     > .options {
       > .option {
         position: relative;
+        $option-size: 8rem;
+        $option-size-sm: 6rem;
+        $option-size-xs: 5rem;
+
+        max-width: $option-size;
+        @include bp-sm-down {
+          max-width: $option-size-sm;
+        }
+        @include bp-xs-down {
+          max-width: $option-size-xs;
+        }
         margin: 0.5rem 0.5rem 1rem;
         cursor: pointer;
 
@@ -244,15 +267,15 @@ export default {
         }
 
         > .image {
-          width: 8rem;
-          height: 8rem;
+          width: $option-size;
+          height: $option-size;
           @include bp-sm-down {
-            width: 6rem;
-            height: 6rem;
+            width: $option-size-sm;
+            height: $option-size-sm;
           }
           @include bp-xs-down {
-            width: 5rem;
-            height: 5rem;
+            width: $option-size-xs;
+            height: $option-size-xs;
           }
           border: 0.3125rem white solid;
           border-radius: 50%;
@@ -266,11 +289,31 @@ export default {
         }
         > .party-flag {
           position: absolute;
-          bottom: 1.65rem;
+          $offset: 1.8rem;
+          top: $option-size - $offset;
           right: -0.45rem;
+          @include bp-sm-down {
+            top: $option-size-sm - $offset;
+          }
+          @include bp-xs-down {
+            top: $option-size-xs - $offset;
+          }
         }
         > .name {
           text-align: center;
+        }
+        > .more {
+          text-align: center;
+          font-size: 0.75rem;
+          > .neighborhoods {
+            color: $color-secondary-text-grey;
+            > .neighborhood {
+              display: inline-block;
+              &:not(:last-of-type):after {
+                content: '､'
+              }
+            }
+          }
         }
         > .tally {
           @include status-indicator;
