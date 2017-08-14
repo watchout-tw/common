@@ -101,11 +101,9 @@ export default {
       alert('什麼是Facebook？')
     },
     generateRandomHandle(event) {
-      console.log('randhandle', event)
       this.joinHandle = nameGenerator({ words: Math.ceil(Math.random() * 3) + 1 }).raw.join('_')
     },
     join(event) {
-      console.log('join', event)
       if(!(this.joinEmail && this.joinHandle && this.joinPassword)) {
         alert('你必須填寫草民代號、Email及密碼')
         return

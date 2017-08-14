@@ -23,7 +23,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import modal from '../../interfaces/modal'
+
+axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 export default {
   mixins: [modal],
@@ -37,10 +40,23 @@ export default {
     }
   },
   methods: {
+    clearInputFields() {
+      this.registrationEmail = undefined
+    },
     submit() {
       if(this.registrationEmail) {
-        // API call here
-        this.submitted = true
+        let body = {
+          email: this.registrationEmail
+        }
+        axios.post('/citizen/request_reset_password', body).then(response => {
+          console.log(response)
+          this.submitted = true
+        }).catch(error => {
+          this.clearInputFields()
+          console.error(error)
+          console.log(error.response.data)
+          alert(error.response.data.message)
+        })
       } else {
         alert('你必須輸入有效的Email')
       }

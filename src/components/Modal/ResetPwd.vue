@@ -24,7 +24,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import modal from '../../interfaces/modal'
+
+axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 export default {
   mixins: [modal],
@@ -39,12 +42,36 @@ export default {
     }
   },
   methods: {
+    clearInputFields() {
+      this.newPassword = undefined
+      this.confirmPassword = undefined
+    },
     submit() {
-      if(this.newPassword && this.confirmPassword === this.newPassword) {
-        // API call here
-        this.submitted = true
+      let token = localStorage.getItem('watchout-password-reset-token')
+      if(token) {
+        if(this.newPassword && this.confirmPassword === this.newPassword) {
+          let headers = {
+            'Authorization': token
+          }
+          let data = {
+            new_password: this.newPassword
+          }
+          axios.post('/citizen/reset_password', data, {
+            headers
+          }).then(response => {
+            console.log(response)
+            this.submitted = true
+          }).catch(error => {
+            this.clearInputFields()
+            console.error(error)
+            console.log(error.response.data)
+            alert(error.response.data.message)
+          })
+        } else {
+          alert('你必須輸入兩次一致的新密碼')
+        }
       } else {
-        alert('你必須輸入兩次一致的新密碼')
+        alert('你的token呢？')
       }
     }
   }
