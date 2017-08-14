@@ -165,6 +165,7 @@ input[type='email']:not([class^="el"]),
 input[type='password']:not([class^="el"]) {
   background: none;
   border: none;
+  border-radius: 0;
   border-bottom: 2px $color-border-grey solid;
   line-height: 1.75;
   padding: 0;
