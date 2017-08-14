@@ -49,7 +49,7 @@ var channels = {
   woo: new Channel('woo', 154, 'https://woo.watchout.tw/', '沃影音'),
   c0ngress: new Channel('c0ngress', 212, 'https://c0ngress.watchout.tw/', '立委履歷'),
   watchout: new Channel('watchout', 274, links.home, '沃草'),
-  console: new Channel('console', 192, 'https://console-edeca.firebaseapp.com', '中控室')
+  console: new Channel('console', 192, 'https://console.watchout.tw', '中控室')
 }
 
 export default {
