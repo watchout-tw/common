@@ -94,7 +94,7 @@ $bp-xl: 1200px;
 }
 // bp-sm-only deprecated
 @mixin bp-sm-down {
-  @media (max-width: #{$bp-sm - 1}) {
+  @media (max-width: #{$bp-sm}) {
     @content;
   }
 }
