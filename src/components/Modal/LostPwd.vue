@@ -13,7 +13,7 @@
         </form>
         <div class="after" v-else>
           <div class="paragraphs tight">
-            <p>我們已經將密碼重設Email寄到剛剛填入的信箱。</p>
+            <p>如果系統中有你剛剛填入的Email，那麼請去收信吧。</p>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default {
       this.registrationEmail = undefined
     },
     submit() {
-      if(this.registrationEmail) {
+      if(this.registrationEmail && /^.+@.+$/.test(this.registrationEmail)) {
         let body = {
           email: this.registrationEmail
         }
