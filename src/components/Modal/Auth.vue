@@ -43,6 +43,7 @@
 
 <script>
 import axios from 'axios'
+import * as util from '../../lib/util'
 import dataStore from '../../lib/dataStore'
 import accordion from '../../interfaces/accordion'
 import modal from '../../interfaces/modal'
@@ -85,6 +86,7 @@ export default {
     loginSuccessful(response) {
       localStorage.setItem('watchout-token', response.data.token)
       localStorage.setItem('watchout-citizen-handle', response.data.handle)
+      util.authenticateAxios()
       this.$store.dispatch('toggleIsAuthenticated', {
         value: true
       })
@@ -118,7 +120,7 @@ export default {
         email: this.joinEmail
       }
       axios.post('/auth/join', citizen).then(response => {
-        alert(response.data.message)
+        alert('請收信，並按照信件中的步驟啟動認證流程')
       }).catch(error => {
         this.clearInputFields()
         console.error(error)
