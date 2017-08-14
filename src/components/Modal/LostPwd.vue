@@ -13,7 +13,7 @@
         </form>
         <div class="after" v-else>
           <div class="paragraphs tight">
-            <p>如果系統中有你剛剛填入的Email，那麼請去收信吧。</p>
+            <p>如果系統中有你剛剛填入的Email，我們已經將信寄出。請收信，並按照信件中的步驟重新設定密碼。</p>
           </div>
         </div>
       </div>
@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios'
+import * as util from '../../lib/util'
 import modal from '../../interfaces/modal'
 
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
@@ -52,8 +53,7 @@ export default {
           this.submitted = true
         }).catch(error => {
           this.clearInputFields()
-          console.error(error)
-          console.log(error.response.data)
+          util.handleThatError(error)
           alert(error.response.data.message)
         })
       } else {

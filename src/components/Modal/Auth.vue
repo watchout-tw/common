@@ -123,8 +123,7 @@ export default {
         alert('請收信，並按照信件中的步驟啟動認證流程')
       }).catch(error => {
         this.clearInputFields()
-        console.error(error)
-        console.log(error.response.data)
+        util.handleThatError(error)
         alert(error.response.data.message)
       })
     },
@@ -142,8 +141,7 @@ export default {
         this.toggleShow()
       }).catch(error => {
         this.clearInputFields()
-        console.error(error)
-        console.log(error.response.data)
+        util.handleThatError(error)
         alert(error.response.data.message)
       })
     }

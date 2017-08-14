@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios'
+import * as util from '../../lib/util'
 import modal from '../../interfaces/modal'
 
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
@@ -63,8 +64,7 @@ export default {
             this.$router.replace({ query: {} })
           }).catch(error => {
             this.clearInputFields()
-            console.error(error)
-            console.log(error.response.data)
+            util.handleThatError(error)
             alert(error.response.data.message)
           })
         } else {

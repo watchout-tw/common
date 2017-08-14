@@ -66,6 +66,8 @@ export default {
       channel: dataStore.channels.park,
       supportIsShown: true,
       supportPackageKey: 'musou',
+      menuSample: [
+      ],
       pollSampleConfig: {
         id: 1,
         type: 'people',

@@ -1,6 +1,6 @@
 <template>
 <nav class="navbar sticky-top d-flex flex-row" :class="channel.classes.bg">
-    <a class="navbar-brand" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
+    <a class="navbar-brand" :class="channelButtonClasses" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
     <el-menu v-if="menu" :router="true" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-submenu v-for="(group, groupIndex) in menu" :index="root + group.id" :key="group.id">
         <template slot="title">{{ group.name }}</template>
@@ -9,7 +9,7 @@
         </el-menu-item>
       </el-submenu>
     </el-menu>
-    <a class="navbar-button" :class="isAuthenticated ? 'identity-citizen' : 'identity-anon'" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self="logout"></div></a>
+    <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self="logout"></div></a>
 </nav>
 </template>
 
@@ -32,6 +32,16 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated
+    },
+    channelButtonClasses() {
+      let classes = []
+      if(this.menu) {
+        classes.push('compact')
+      }
+      return classes
+    },
+    identityButtonClasses() {
+      return [this.isAuthenticated ? 'identity-citizen' : 'identity-anon']
     }
   },
   created() {
@@ -40,8 +50,7 @@ export default {
     }
   },
   mounted() {
-    console.log('#' + this.channel.id)
-    console.log('Navigation with identity initiated.')
+    console.log('%c' + this.channel.id.toUpperCase(), 'font-weight:bold')
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -71,6 +80,14 @@ export default {
 <style lang="scss">
 @import '../../styles/resources';
 
+.navbar-brand {
+  &.compact {
+    @include bp-lg-alt-down {
+      width: $navbar-height;
+      overflow: hidden;
+    }
+  }
+}
 .navbar-button {
   display: block;
   width: 60px;
@@ -92,6 +109,7 @@ export default {
     background-image: url(assets/identity/human.png);
   }
 }
+
 // FIXME: ElementIO Navbar hack
 .el-menu {
   background: none;
