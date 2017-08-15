@@ -1,7 +1,7 @@
 <template>
 <transition name="modal">
-  <div id="modal-lost-pwd" class="modal-mask" @keyup.esc="toggleShow">
-    <div class="modal-wrapper" @click.self="toggleShow">
+  <div id="modal-lost-pwd" class="modal-mask" @keyup.esc="hide">
+    <div class="modal-wrapper" @click.self="hide">
       <div class="modal-dialog">
         <form class="before" v-if="!submitted" @submit.prevent="submit">
           <h3>忘記密碼了嗎？</h3>
@@ -51,6 +51,7 @@ export default {
         }
         axios.post('/citizen/request_reset_password', body).then(response => {
           this.submitted = true
+          this.hideAfter(2500)
         }).catch(error => {
           this.clearInputFields()
           util.handleThatError(error)

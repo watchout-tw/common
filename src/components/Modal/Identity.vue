@@ -1,7 +1,7 @@
 <template>
 <transition name="modal">
-  <div id="modal-identity" class="modal-mask" @keyup.esc="toggleShow">
-    <div class="modal-wrapper" @click.self="toggleShow">
+  <div id="modal-identity" class="modal-mask" @keyup.esc="hide">
+    <div class="modal-wrapper" @click.self="hide">
       <div class="modal-dialog">
         <div class="content">
           Hello <strong>{{ handle }}</strong> 🖖

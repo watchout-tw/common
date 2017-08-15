@@ -1,7 +1,7 @@
 <template>
 <transition name="modal">
-  <div id="modal-auth" class="modal-mask" @keyup.esc="toggleShow">
-    <div class="modal-wrapper" @click.self="toggleShow">
+  <div id="modal-auth" class="modal-mask" @keyup.esc="hide">
+    <div class="modal-wrapper" @click.self="hide">
       <div class="modal-dialog">
         <div class="before accordion" v-if="!joinSuccessful && !loginSuccessful">
           <div class="card" :class="cardClasses('join')">
@@ -80,8 +80,7 @@ export default {
       joinPassword: undefined,
       iAgree: false,
       joinSuccessful: false,
-      loginSuccessful: false,
-      toggleShowAfter: 3500
+      loginSuccessful: false
     }
   },
   computed: {
@@ -96,7 +95,7 @@ export default {
     },
     onJoinSuccessful(response) {
       this.joinSuccessful = true
-      this.toggleShowSchedule = setTimeout(this.toggleShow, this.toggleShowAfter)
+      this.hideAfter(3500)
     },
     onLoginSuccessful(response) {
       this.loginSuccessful = true
@@ -106,7 +105,7 @@ export default {
       this.$store.dispatch('toggleIsAuthenticated', {
         value: true
       })
-      this.toggleShowSchedule = setTimeout(this.toggleShow, this.toggleShowAfter)
+      this.hideAfter(2500)
     },
     showLostPwd() {
       this.$store.dispatch('toggleModalAuth', {
@@ -120,7 +119,7 @@ export default {
       alert('什麼是Facebook？')
     },
     generateRandomHandle(event) {
-      this.joinHandle = nameGenerator({ words: Math.ceil(Math.random() * 3) + 1 }).raw.join('_')
+      this.joinHandle = nameGenerator({ words: Math.ceil(Math.random() * 2) + 1 }).raw.join('_')
     },
     join(event) {
       if(!(this.joinEmail && this.joinHandle && this.joinPassword)) {
