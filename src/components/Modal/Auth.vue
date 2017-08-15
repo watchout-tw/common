@@ -36,8 +36,12 @@
           </div>
         </div>
         <div class="after" v-else>
-          <div v-if="joinSuccessful">請收信，並按照信件中的步驟啟動認證流程</div>
-          <div v-if="loginSuccessful">歡迎回到沃草共有地</div>
+          <div v-if="joinSuccessful" class="paragraphs tight">
+            <p>請收信，並按照信件中的步驟啟動認證流程</p>
+          </div>
+          <div v-if="loginSuccessful" class="paragraphs tight">
+            <p>歡迎回到沃草共有地</p>
+          </div>
         </div>
       </div>
     </div>
