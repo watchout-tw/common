@@ -9,7 +9,7 @@
         </el-menu-item>
       </el-submenu>
     </el-menu>
-    <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self="logout"></div></a>
+    <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self.stop="logout"></div></a>
 </nav>
 </template>
 
