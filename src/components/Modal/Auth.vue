@@ -10,6 +10,7 @@
             </a>
             <div class="card-body" @keyup.enter.prevent="join">
               <div class="field d-flex justify-content-between align-items-end"><input type="text" name="id" placeholder="草民代號" v-model="joinHandle" style="width: 12.5rem;" /><button class="park small floating" @click="generateRandomHandle">隨機</button></div>
+              <div class="note">草民代號是你在沃草共有地的身份識別，無法更改，請謹慎選擇。你可以使用A-Z、a-z（大小寫不同）、0-9、底線（_）以及連字號（-）。</div>
               <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
               <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
               <div class="field d-flex justify-content-between align-items-center">
@@ -195,6 +196,10 @@ export default {
   .after {
     background: rgba($color-park, 0.32);
     padding: 1rem;
+  }
+  .note {
+    font-size: 0.75rem;
+    color: $color-secondary-text-grey;
   }
 }
 </style>
