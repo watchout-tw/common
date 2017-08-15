@@ -3,7 +3,7 @@
   <div id="modal-auth" class="modal-mask" @keyup.esc="toggleShow">
     <div class="modal-wrapper" @click.self="toggleShow">
       <div class="modal-dialog">
-        <div class="accordion">
+        <div class="before accordion" v-if="!joinSuccessful && !loginSuccessful">
           <div class="card" :class="cardClasses('join')">
             <a class="card-head" @click.stop.prevent="activateCard('join')">
               <h3>成為草民</h3>
@@ -34,6 +34,10 @@
               <label class="text-color-park"><a class="a-text" href="#" @click.prevent="showFacebookLogin">你在找Facebook登入嗎？</a></label>
             </div>
           </div>
+        </div>
+        <div class="after" v-else>
+          <div v-if="joinSuccessful">請收信，並按照信件中的步驟啟動認證流程</div>
+          <div v-if="loginSuccessful">歡迎回到沃草共有地</div>
         </div>
       </div>
     </div>
@@ -70,7 +74,10 @@ export default {
       joinEmail: undefined,
       joinHandle: undefined,
       joinPassword: undefined,
-      iAgree: false
+      iAgree: false,
+      joinSuccessful: false,
+      loginSuccessful: false,
+      toggleShowAfter: 3500
     }
   },
   computed: {
@@ -83,13 +90,19 @@ export default {
       this.loginPassword = undefined
       this.joinPassword = undefined
     },
-    loginSuccessful(response) {
+    onJoinSuccessful(response) {
+      this.joinSuccessful = true
+      this.toggleShowSchedule = setTimeout(this.toggleShow, this.toggleShowAfter)
+    },
+    onLoginSuccessful(response) {
+      this.loginSuccessful = true
       localStorage.setItem('watchout-token', response.data.token)
       localStorage.setItem('watchout-citizen-handle', response.data.handle)
       util.authenticateAxios()
       this.$store.dispatch('toggleIsAuthenticated', {
         value: true
       })
+      this.toggleShowSchedule = setTimeout(this.toggleShow, this.toggleShowAfter)
     },
     showLostPwd() {
       this.$store.dispatch('toggleModalAuth', {
@@ -120,7 +133,7 @@ export default {
         email: this.joinEmail
       }
       axios.post('/auth/join', citizen).then(response => {
-        alert('請收信，並按照信件中的步驟啟動認證流程')
+        this.onJoinSuccessful(response)
       }).catch(error => {
         this.clearInputFields()
         util.handleThatError(error)
@@ -136,9 +149,7 @@ export default {
       var loginObj = /^.+@.+$/.test(this.loginAccount) ? { email: this.loginAccount } : { handle: this.loginAccount }
       loginObj.password = this.loginPassword
       axios.post('/auth/login', loginObj).then(response => {
-        alert('歡迎回到沃草共有地')
-        this.loginSuccessful(response)
-        this.toggleShow()
+        this.onLoginSuccessful(response)
       }).catch(error => {
         this.clearInputFields()
         util.handleThatError(error)
@@ -172,11 +183,15 @@ export default {
 }
 
 #modal-auth {
-  .accordion > .card {
+  .before.accordion > .card {
     background: rgba($color-park, 0.16);
     &.dark {
       background: rgba($color-park, 0.32);
     }
+  }
+  .after {
+    background: rgba($color-park, 0.32);
+    padding: 1rem;
   }
 }
 </style>
