@@ -40,7 +40,7 @@ class Channel {
 
 var channels = {
   park: new Channel('park', 212, 'https://park.watchout.tw/', '中央公園'),
-  poll: new Channel('poll', 172, 'https://park.watchout.tw/polls', '民調'),
+  kangsim: new Channel('kangsim', 192, 'https://park.watchout.tw/kangsim', '找共識'),
   lab: new Channel('lab', 232, 'https://lab.watchout.tw/', '議題實驗室'),
   musou: new Channel('musou', 212, 'https://musou.watchout.tw/', '國會無雙'),
   ask: new Channel('ask', 212, 'https://ask.watchout.tw/', '給問擂台'),

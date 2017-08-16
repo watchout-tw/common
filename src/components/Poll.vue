@@ -3,7 +3,7 @@
   <h1 class="small">{{ config.name }}</h1>
   <div class="paragraphs">
     <p v-if="!ballotCasted">{{ config.question }}</p>
-    <p v-else>感謝你參與這次的沃草民調，你的選擇是<strong>{{ selectedOptionID }}</strong>。</p>
+    <p v-else>感謝你參與這次的沃草找共識，你的選擇是<strong>{{ selectedOptionID }}</strong>。</p>
   </div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
@@ -24,24 +24,24 @@
     </div>
     <div class="login" v-if="!isAuthenticated">
       <div class="paragraphs center small">
-        <p class="note">必須先成為草民或登入才能投票哦。</p>
+        <p class="note">必須先成為草民或登入才能參與這次找共識哦。</p>
       </div>
       <button class="park floating" @click="showModalAuth">成為草民或登入</button>
     </div>
     <div class="submit" v-else-if="!ballotCasted">
       <div class="paragraphs center small">
-        <p class="note">請想清楚再投票，送出後無法更改。</p>
+        <p class="note">想清楚再按下按鈕哦，送出後無法更改。</p>
       </div>
-      <button class="park floating" @click="castBallot">投下你的一票</button>
+      <button class="park floating" @click="castBallot">我決定好了</button>
     </div>
     <div class="share" v-else>
       <div class="buttons">
         <a class="button-wrapper" :href="config.related_event.participation_link" target="_blank"><button class="park floating">我要參加{{ config.related_event.name }}</button></a>
-        <a class="button-wrapper" :href="pollShareLink" target="_blank"><button class="park floating">我要分享這次民調</button></a>
+        <a class="button-wrapper" :href="pollShareLink" target="_blank"><button class="park floating">我要分享這次找共識</button></a>
       </div>
     </div>
     <div class="description">
-      <h2 class="small">關於這次投票</h2>
+      <h2 class="small">關於這次找共識</h2>
       <div class="paragraphs">
         <p>{{ config.description }}</p>
       </div>
@@ -92,7 +92,7 @@ export default {
       }
     },
     pollShareLink() {
-      return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/polls/${this.config.slug}`
+      return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/kangsim/${this.config.slug}`
     }
   },
   watch: {
