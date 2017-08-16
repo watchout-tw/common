@@ -3,7 +3,7 @@
   <div id="modal-auth" class="modal-mask" @keyup.esc="hide">
     <div class="modal-wrapper" @click.self="hide">
       <div class="modal-dialog">
-        <div class="before accordion" v-if="!joinSuccessful && !loginSuccessful">
+        <div class="before accordion" v-if="!verificationEmailSent && !loginSuccessful && !requireEmailVerification">
           <div class="card" :class="cardClasses('join')">
             <a class="card-head" @click.stop.prevent="activateCard('join')">
               <h3>成為草民</h3>
@@ -37,11 +37,15 @@
           </div>
         </div>
         <div class="after" v-else>
-          <div v-if="joinSuccessful" class="paragraphs tight">
+          <div v-if="verificationEmailSent" class="paragraphs tight">
             <p>請收信，並按照信件中的步驟啟動認證流程</p>
           </div>
           <div v-if="loginSuccessful" class="paragraphs tight">
             <p>歡迎回到沃草共有地</p>
+          </div>
+          <div v-if="requireEmailVerification">
+            <p>你的Email尚未通過認證</p>
+            <button class="park floating" @click.prevent="requestEmailVerification">重發認證信</button>
           </div>
         </div>
       </div>
@@ -60,6 +64,11 @@ import modal from '../../interfaces/modal'
 axios.defaults.baseURL = 'https://c0re.watchout.tw'
 
 const nameGenerator = require('project-name-generator')
+
+const DEFAULT = 0
+const VERIF_EMAIL_SENT = 1
+const LOGIN_SUCCESS = 2
+const REQUIRE_EMAIL_VERIF = 3
 
 export default {
   name: 'modal-auth',
@@ -80,13 +89,43 @@ export default {
       joinHandle: undefined,
       joinPassword: undefined,
       iAgree: false,
-      joinSuccessful: false,
-      loginSuccessful: false
+      status: DEFAULT,
+      emailVerificationRequestLink: undefined
     }
   },
   computed: {
     activeCardID() {
       return this.$store.state.modalAuthActiveCard
+    },
+    verificationEmailSent: {
+      get: function() {
+        return this.status === VERIF_EMAIL_SENT
+      },
+      set: function(newValue) {
+        if(newValue) {
+          this.status = VERIF_EMAIL_SENT
+        }
+      }
+    },
+    loginSuccessful: {
+      get: function() {
+        return this.status === LOGIN_SUCCESS
+      },
+      set: function(newValue) {
+        if(newValue) {
+          this.status = LOGIN_SUCCESS
+        }
+      }
+    },
+    requireEmailVerification: {
+      get: function() {
+        return this.status === REQUIRE_EMAIL_VERIF
+      },
+      set: function(newValue) {
+        if(newValue) {
+          this.status = REQUIRE_EMAIL_VERIF
+        }
+      }
     }
   },
   methods: {
@@ -95,7 +134,7 @@ export default {
       this.joinPassword = undefined
     },
     onJoinSuccessful(response) {
-      this.joinSuccessful = true
+      this.verificationEmailSent = true
       this.hideAfter(3500)
     },
     onLoginSuccessful(response) {
@@ -157,8 +196,21 @@ export default {
       }).catch(error => {
         this.clearInputFields()
         util.handleThatError(error)
-        alert(error.response.data.message)
+        if(error.response.data.message.indexOf('未認證') > -1 && error.response.data.link) {
+          this.emailVerificationRequestLink = error.response.data.link.replace(axios.defaults.baseURL, '')
+          this.requireEmailVerification = true
+        } else {
+          alert(error.response.data.message)
+        }
       })
+    },
+    requestEmailVerification() {
+      if(this.emailVerificationRequestLink) {
+        axios.get(this.emailVerificationRequestLink).then(response => {
+          this.verificationEmailSent = true
+          this.hideAfter(3500)
+        }).catch(util.handleThatError)
+      }
     }
   }
 }
