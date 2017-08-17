@@ -1,10 +1,7 @@
 <template>
 <div class="poll" :class="pollClasses">
   <h1 class="small">{{ config.name }}</h1>
-  <div class="paragraphs">
-    <p v-if="!ballotCasted">{{ config.question }}</p>
-    <p v-else>感謝你參與這次的沃草找共識，你的選擇是<strong>{{ selectedOptionID }}</strong>。</p>
-  </div>
+  <div class="paragraphs" v-html="markdown(ballotCasted ? thankYou : config.question)"></div>
   <div class="poll-loading" v-if="!initialized">載入中，請稍候⋯</div>
   <div class="poll-body" v-else>
     <div class="poll-tally" v-if="ballotCasted"><span class="underline">目前票數</span></div>
@@ -42,9 +39,7 @@
     </div>
     <div class="description">
       <h2 class="small">關於這次找共識</h2>
-      <div class="paragraphs">
-        <p>{{ config.description }}</p>
-      </div>
+      <div class="paragraphs" v-html="markdown(config.description)"></div>
     </div>
   </div>
 </div>
@@ -54,6 +49,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as util from '../lib/util'
+import marked from 'marked'
 import axios from 'axios'
 
 Vue.use(Vuex)
@@ -93,6 +89,9 @@ export default {
     },
     pollShareLink() {
       return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/kangsim/${this.config.slug}`
+    },
+    thankYou() {
+      return `感謝你參與這次的沃草找共識，你的選擇是<strong>${this.selectedOptionID}</strong>。`
     }
   },
   watch: {
@@ -192,6 +191,9 @@ export default {
           }).catch(util.handleThatError)
         }
       }
+    },
+    markdown(str) {
+      return marked(str)
     }
   }
 }
@@ -200,6 +202,7 @@ export default {
 <style lang="scss">
 @import '../styles/resources';
 
+// FIXME: this should be moved into common
 .party-flag {
   width: 2rem;
   height: 1.75rem;

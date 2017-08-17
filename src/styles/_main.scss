@@ -446,6 +446,12 @@ section {
 .paragraphs {
   // max-width: 18rem;
   margin: 1rem 0;
+  &.first {
+    margin-top: 0;
+  }
+  &.last {
+    margin-bottom: 0;
+  }
   &.small {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
