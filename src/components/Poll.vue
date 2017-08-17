@@ -91,7 +91,7 @@ export default {
       return `https://www.facebook.com/sharer/sharer.php?u=https%3A//park.watchout.tw/kangsim/${this.config.slug}`
     },
     thankYou() {
-      return `感謝你參與這次的沃草找共識，你的選擇是<strong>${this.selectedOptionID}</strong>。`
+      return `感謝你參與這次的沃草《找共識》，你的選擇是<strong>${this.selectedOptionID}</strong>。`
     }
   },
   watch: {
