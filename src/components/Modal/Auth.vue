@@ -126,6 +126,9 @@ export default {
           this.status = REQUIRE_EMAIL_VERIF
         }
       }
+    },
+    handle() {
+      return localStorage.getItem('watchout-citizen-handle')
     }
   },
   methods: {
@@ -141,7 +144,10 @@ export default {
       this.loginSuccessful = true
       localStorage.setItem('watchout-token', response.data.token)
       localStorage.setItem('watchout-citizen-handle', response.data.handle)
+
       util.authenticateAxios()
+      util.getCitizen(this.$store)
+
       this.$store.dispatch('toggleIsAuthenticated', {
         value: true
       })

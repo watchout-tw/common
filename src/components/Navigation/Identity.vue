@@ -9,7 +9,7 @@
         </el-menu-item>
       </el-submenu>
     </el-menu>
-    <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"><div class="close small" v-if="isAuthenticated" @click.self.stop="logout"></div></a>
+    <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"></a>
 </nav>
 </template>
 
@@ -48,6 +48,9 @@ export default {
     if(this.$route) {
       this.activeIndex = this.$route.path
     }
+    if(this.isAuthenticated) {
+      util.getCitizen(this.$store)
+    }
   },
   mounted() {
     console.log('%c' + this.channel.id.toUpperCase(), 'font-weight:bold')
@@ -66,12 +69,6 @@ export default {
           value: !this.$store.state.modalAuthIsShown
         })
       }
-    },
-    logout() {
-      this.$store.dispatch('toggleIsAuthenticated', {
-        value: false
-      })
-      localStorage.clear()
     }
   }
 }
