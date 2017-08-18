@@ -14,7 +14,7 @@
               <div class="field"><input type="email" name="email" v-model="joinEmail" placeholder="Email" class="full-width" /></div>
               <div class="field"><input type="password" name="password" v-model="joinPassword" placeholder="密碼" class="full-width" /></div>
               <div class="field d-flex justify-content-between align-items-center">
-                <button class="park floating" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="https://watchout.tw/tos" target="_blank">使用條款</a></span></label>
+                <button class="park floating" @click="join">註冊</button><label class="form-check-label"><input type="checkbox" class="park" v-model="iAgree"><span>我同意<a class="a-text" href="#" @click.stop.prevent="showToS">使用條款</a></span></label>
               </div>
             </div>
           </div>
@@ -153,6 +153,11 @@ export default {
       })
       this.hideAfter(2500)
     },
+    showToS() {
+      this.$store.dispatch('toggleModalTermsOfSvc', {
+        value: true
+      })
+    },
     showLostPwd() {
       this.$store.dispatch('toggleModalAuth', {
         value: false
@@ -229,9 +234,6 @@ export default {
   > .card-body {
     max-height: 0;
     overflow: hidden;
-    > .field:last-of-type {
-      padding-bottom: 1rem;
-    }
   }
   &.active {
     padding-bottom: 1rem;

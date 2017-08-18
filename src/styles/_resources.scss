@@ -23,8 +23,8 @@ $color-ask-darker: #45D1C5;
 $color-musou-darker: #E64C5E;
 $color-edu-darker: #A4DB56;
 
-$color-placeholder: rgba(0, 0, 0, 0.65);
-$color-shadow: rgba(0, 0, 0, 0.25);
+$color-placeholder: rgba(black, 0.65);
+$color-shadow: rgba(black, 0.25);
 $color-generic-grey: #b9b9b9;
 $color-border-grey: #9b9b9b;
 $color-secondary-text-grey: #707070;
@@ -33,6 +33,12 @@ $color-nice-grey: #4a4a4a;
 $color-soil-light: #bd7260;
 $color-soil-dark: #8c4533;
 $color-soil-deep: #434343;
+
+$color-modal-mask: rgba(white, 0.94);
+$color-modal-mask-more-transparent: rgba(white, 0.32);
+
+$color-code: blue;
+$color-code-background: rgba(blue, 0.13);
 
 // Typography
 

@@ -18,5 +18,8 @@ export default {
   },
   [types.TOGGLE_MODAL_IDENTITY](state, mutateObj) {
     state.modalIdentityIsShown = mutateObj.value
+  },
+  [types.TOGGLE_MODAL_TERMS_OF_SVC](state, mutateObj) {
+    state.modalTermsOfSvcIsShown = mutateObj.value
   }
 }

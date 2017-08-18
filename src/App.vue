@@ -5,6 +5,7 @@
   <ModalLostPwd v-if="modalLostPwdIsShown"></ModalLostPwd>
   <ModalResetPwd v-if="modalResetPwdIsShown"></ModalResetPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
+  <ModalTermsOfSvc v-if="modalTermsOfSvcIsShown"></ModalTermsOfSvc>
   <Poll :config="pollSampleConfig"></Poll>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :support-is-shown.sync="supportIsShown" :support-package-key="supportPackageKey"></SupportWatchoutStandard>
@@ -20,6 +21,7 @@ import ModalAuth from './components/Modal/Auth'
 import ModalLostPwd from './components/Modal/LostPwd'
 import ModalResetPwd from './components/Modal/ResetPwd'
 import ModalIdentity from './components/Modal/Identity'
+import ModalTermsOfSvc from './components/Modal/TermsOfSvc'
 import FooterStandard from './components/Footer/Standard'
 import Poll from './components/Poll'
 import SupportWatchoutStandard from './components/SupportWatchout/Standard'
@@ -35,6 +37,7 @@ export default {
     ModalLostPwd,
     ModalResetPwd,
     ModalIdentity,
+    ModalTermsOfSvc,
     FooterStandard,
     Poll,
     SupportWatchoutStandard
@@ -54,6 +57,9 @@ export default {
     },
     modalIdentityIsShown() {
       return this.$store.state.modalIdentityIsShown
+    },
+    modalTermsOfSvcIsShown() {
+      return this.$store.state.modalTermsOfSvcIsShown
     }
   },
   beforeMount() {

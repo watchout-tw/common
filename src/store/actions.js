@@ -18,5 +18,8 @@ export default {
   },
   toggleModalIdentity({ commit }, reqObj) {
     commit(types.TOGGLE_MODAL_IDENTITY, reqObj)
+  },
+  toggleModalTermsOfSvc({ commit }, reqObj) {
+    commit(types.TOGGLE_MODAL_TERMS_OF_SVC, reqObj)
   }
 }

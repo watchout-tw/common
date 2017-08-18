@@ -4,5 +4,6 @@ export default {
   modalAuthActiveCard: 'join',
   modalLostPwdIsShown: false,
   modalResetPwdIsShown: false,
-  modalIdentityIsShown: false
+  modalIdentityIsShown: false,
+  modalTermsOfSvcIsShown: false
 }
