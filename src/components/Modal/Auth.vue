@@ -261,5 +261,8 @@ export default {
     font-size: 0.75rem;
     color: $color-secondary-text-grey;
   }
+  .field:last-of-type {
+    padding-bottom: 0.25rem;
+  }
 }
 </style>
