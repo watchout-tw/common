@@ -207,6 +207,18 @@ button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next i
       @include shadow;
     }
   }
+  &.soft {
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: black;
+
+    &.park {
+      background: rgba($color-park, 0.65);
+    }
+  }
 }
 input:not(.full-width) + button:not([class^="el"]) {
   margin-left: 0.5rem;
@@ -360,6 +372,9 @@ input[type='checkbox']:not([class^="el"]) {
 }
 .bg-park-light {
   background-color: rgba($color-park, 0.25);
+}
+.bg-park-light-opaque {
+  background-color: $color-park-light;
 }
 .bg-kangsim {
   background-color: $color-kangsim;
