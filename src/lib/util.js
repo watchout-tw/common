@@ -7,11 +7,21 @@ export function handleThatError(error) {
 export function jwtTokenIsHere() {
   return !!localStorage.getItem('watchout-token')
 }
+export function isAdmin() {
+  const adminRoles = ['god', 'editor']
+  const roleString = getCitizenRoleString()
+  return !adminRoles.reduce(function(flag, role) {
+    return flag && roleString.indexOf(role) < 0
+  }, true)
+}
 export function getCitizenHandle() {
   return localStorage.getItem('watchout-citizen-handle')
 }
 export function getCitizenFirstEmail() {
   return localStorage.getItem('watchout-citizen-first-email')
+}
+export function getCitizenRoleString() {
+  return localStorage.getItem('watchout-citizen-roles')
 }
 export function authenticateAxios() {
   const token = localStorage.getItem('watchout-token')
@@ -32,4 +42,7 @@ export function getCitizen($store) { // FIXME: seems like a bad idea to pass $st
       }).catch(handleThatError)
     }
   }
+}
+export function makeCitizenRoleString(roles) {
+  return roles.map(role => role.channel + '.' + role.name).join(',')
 }

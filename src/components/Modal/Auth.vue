@@ -144,6 +144,7 @@ export default {
       this.loginSuccessful = true
       localStorage.setItem('watchout-token', response.data.token)
       localStorage.setItem('watchout-citizen-handle', response.data.handle)
+      localStorage.setItem('watchout-citizen-roles', util.makeCitizenRoleString(response.data.roles))
 
       util.authenticateAxios()
       util.getCitizen(this.$store)
