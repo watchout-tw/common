@@ -6,7 +6,6 @@
   <ModalResetPwd v-if="modalResetPwdIsShown"></ModalResetPwd>
   <ModalIdentity v-if="modalIdentityIsShown"></ModalIdentity>
   <ModalTermsOfSvc v-if="modalTermsOfSvcIsShown"></ModalTermsOfSvc>
-  <Poll :config="pollSampleConfig"></Poll>
   <FooterStandard></FooterStandard>
   <SupportWatchoutStandard v-if="supportIsShown" :support-is-shown.sync="supportIsShown" :support-package-key="supportPackageKey"></SupportWatchoutStandard>
 </div>
@@ -23,7 +22,6 @@ import ModalResetPwd from './components/Modal/ResetPwd'
 import ModalIdentity from './components/Modal/Identity'
 import ModalTermsOfSvc from './components/Modal/TermsOfSvc'
 import FooterStandard from './components/Footer/Standard'
-import Poll from './components/Poll'
 import SupportWatchoutStandard from './components/SupportWatchout/Standard'
 import * as util from './lib/util'
 
@@ -39,7 +37,6 @@ export default {
     ModalIdentity,
     ModalTermsOfSvc,
     FooterStandard,
-    Poll,
     SupportWatchoutStandard
   },
   computed: {
@@ -72,79 +69,7 @@ export default {
       channel: dataStore.channels.park,
       supportIsShown: true,
       supportPackageKey: 'musou',
-      menuSample: [
-      ],
-      pollSampleConfig: {
-        id: 1,
-        type: 'people',
-        slug: 'taoyuan-1',
-        name: '桃園立委給問嗎',
-        question: '這些桃園的立法委員，你想問誰？',
-        description: '沃草將會邀請得票數前四位的委員參加九月的《桃園立委給問嗎》。',
-        options: [
-          {
-            id: '鄭運鵬',
-            name: '鄭運鵬',
-            party: '民進黨',
-            zone: '桃園市',
-            district: '第一選舉區',
-            neighborhoods: ['蘆竹', '龜山', '桃園']
-          },
-          {
-            id: '陳賴素美',
-            name: '陳賴素美',
-            party: '民進黨',
-            zone: '桃園市',
-            district: '第二選舉區',
-            neighborhoods: ['大園', '觀音', '新屋', '楊梅']
-          },
-          {
-            id: '陳學聖',
-            name: '陳學聖',
-            party: '國民黨',
-            zone: '桃園市',
-            district: '第三選舉區',
-            neighborhoods: ['中壢']
-          },
-          {
-            id: '鄭寶清',
-            name: '鄭寶清',
-            party: '民進黨',
-            zone: '桃園市',
-            district: '第四選舉區',
-            neighborhoods: ['桃園']
-          },
-          {
-            id: '呂玉玲',
-            name: '呂玉玲',
-            party: '國民黨',
-            zone: '桃園市',
-            district: '第五選舉區',
-            neighborhoods: ['平鎮', '龍潭']
-          },
-          {
-            id: '趙正宇',
-            name: '趙正宇',
-            party: '無黨籍',
-            zone: '桃園市',
-            district: '第六選舉區',
-            neighborhoods: ['八德', '大溪', '復興', '中壢']
-          },
-          {
-            id: '吳志揚',
-            name: '吳志揚',
-            party: '國民黨',
-            zone: '全國不分區'
-          }
-        ],
-        related_event: {
-          id: 16,
-          type: 'physical',
-          name: '桃園立委給問嗎',
-          link: 'https://ask.watchout.tw',
-          participation_link: 'https://ask.watchout.tw'
-        }
-      }
+      menuSample: []
     }
   }
 }

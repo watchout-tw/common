@@ -54,11 +54,10 @@ export default {
           this.hideAfter(2500)
         }).catch(error => {
           this.clearInputFields()
-          util.handleThatError(error)
-          alert(error.response.data.message)
+          util.handleThatErrorAndAlert(error)
         })
       } else {
-        alert('你必須輸入有效的Email')
+        util.sysAlert('park_auth_email_addr_not_valid')
       }
     }
   }

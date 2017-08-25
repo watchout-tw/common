@@ -168,18 +168,18 @@ export default {
       })
     },
     showFacebookLogin() {
-      alert('什麼是Facebook？')
+      util.sysAlert('park_auth_no_facebook')
     },
     generateRandomHandle(event) {
       this.joinHandle = nameGenerator({ words: Math.ceil(Math.random() * 2) + 1 }).raw.join('_')
     },
     join(event) {
       if(!(this.joinEmail && this.joinHandle && this.joinPassword)) {
-        alert('你必須填寫草民代號、Email及密碼')
+        util.sysAlert('park_auth_join_info_incomplete')
         return
       }
       if(!this.iAgree) {
-        alert('你必須同意使用條款')
+        util.sysAlert('park_auth_tos_agreement_required')
         return
       }
       let citizen = {
@@ -191,13 +191,12 @@ export default {
         this.onJoinSuccessful(response)
       }).catch(error => {
         this.clearInputFields()
-        util.handleThatError(error)
-        alert(error.response.data.message)
+        util.handleThatErrorAndAlert(error)
       })
     },
     login() {
       if(!(this.loginAccount && this.loginPassword)) {
-        alert('請輸入草民代號及密碼')
+        util.sysAlert('park_auth_login_info_incomplete')
         return
       }
       // Should create a RESTful service to handle
@@ -212,7 +211,7 @@ export default {
           this.emailVerificationRequestLink = error.response.data.link.replace(axios.defaults.baseURL, '')
           this.requireEmailVerification = true
         } else {
-          alert(error.response.data.message)
+          util.sysAlert(error.response.data.message)
         }
       })
     },

@@ -65,14 +65,13 @@ export default {
             this.$router.replace({ query: {} })
           }).catch(error => {
             this.clearInputFields()
-            util.handleThatError(error)
-            alert(error.response.data.message)
+            util.handleThatErrorAndAlert(error)
           })
         } else {
-          alert('你必須輸入兩次一致的新密碼')
+          util.sysAlert('park_auth_reset_pwd_input_mismatch')
         }
       } else {
-        alert('你的token呢？')
+        util.sysAlert('park_auth_token_not_found')
       }
     }
   }
