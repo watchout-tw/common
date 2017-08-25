@@ -14,6 +14,7 @@
 <script>
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 import dataStore from './lib/dataStore'
 import NavigationWithIdentity from './components/Navigation/Identity'
 import ModalAuth from './components/Modal/Auth'
@@ -57,6 +58,13 @@ export default {
     },
     modalTermsOfSvcIsShown() {
       return this.$store.state.modalTermsOfSvcIsShown
+    }
+  },
+  created() {
+    if(Vue.config.mode === 'production') {
+      axios.defaults.baseURL = 'https://core.watchout.tw'
+    } else {
+      axios.defaults.baseURL = 'https://c0re.watchout.tw'
     }
   },
   beforeMount() {

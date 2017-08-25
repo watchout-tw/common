@@ -61,8 +61,6 @@ import dataStore from '../../lib/dataStore'
 import accordion from '../../interfaces/accordion'
 import modal from '../../interfaces/modal'
 
-axios.defaults.baseURL = 'https://c0re.watchout.tw'
-
 const nameGenerator = require('project-name-generator')
 
 const DEFAULT = 0

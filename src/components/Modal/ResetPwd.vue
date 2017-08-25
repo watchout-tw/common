@@ -28,8 +28,6 @@ import axios from 'axios'
 import * as util from '../../lib/util'
 import modal from '../../interfaces/modal'
 
-axios.defaults.baseURL = 'https://c0re.watchout.tw'
-
 export default {
   mixins: [modal],
   data() {
