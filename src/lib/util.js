@@ -61,7 +61,7 @@ export function makeCitizenRoleString(roles) {
   return roles.map(role => role.channel + '.' + role.name).join(',')
 }
 
-const messageDict = {
+const sysMessageDict = {
   system_unknown_error: '系統發生不明的錯誤',
   park_auth_no_facebook: '什麼是Facebook？',
   park_auth_tos_agreement_required: '你必須同意使用條款',
@@ -85,10 +85,21 @@ const messageDict = {
   core_citizen_login_failed: '草民代號、Email或密碼錯誤'
 }
 
-export function sysMessage(code) {
-  return messageDict[code] ? messageDict[code] : messageDict['system_unknown_error']
+function rawToSysMessage(raw) {
+  let code = 'system_unknown_error'
+  if(sysMessageDict.hasOwnProperty(raw)) {
+    code = raw
+  } else {
+    // these rules process error messages from validator
+    if(raw.indexOf('handle') > -1) {
+      code = 'core_citizen_login_failed'
+    } else if(raw.indexOf('email') > -1) {
+      code = 'park_auth_email_addr_not_valid'
+    }
+  }
+  return sysMessageDict[code]
 }
 
 export function sysAlert(code) {
-  alert(sysMessage(code))
+  alert(rawToSysMessage(code))
 }
