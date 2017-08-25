@@ -422,7 +422,6 @@ input[type='checkbox']:not([class^="el"]) {
   background-color: rgba($color-edu, 0.25);
 }
 
-
 // Header
 .header-center {
   text-align: center;
@@ -513,5 +512,25 @@ section {
   > a.button-wrapper {
     display: inline-block;
     margin: 0.5rem 0.25rem;
+  }
+}
+
+// Watchout sepcific elements
+
+.party-flag {
+  width: 2rem;
+  height: 1.75rem;
+
+  > .flag {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+  	transform: skew(0, -20deg) scale(0.65);
+    background: red;
+  }
+  > .name {
+    font-size: 0.65rem;
+    color: $color-secondary-text-grey;
   }
 }
