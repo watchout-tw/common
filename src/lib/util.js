@@ -2,7 +2,11 @@ import axios from 'axios'
 
 export function handleThatError(error) {
   console.error(error)
-  console.log(error.response.data)
+  if(error.response) {
+    if(error.response.data) {
+      console.log(error.response.data)
+    }
+  }
 }
 export function jwtTokenIsHere() {
   return !!localStorage.getItem('watchout-token')
