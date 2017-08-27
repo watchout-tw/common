@@ -61,6 +61,7 @@ export default {
     }
   },
   created() {
+    console.log(`This is the Common App (${Vue.config.mode})`)
     if(Vue.config.mode === 'production') {
       axios.defaults.baseURL = 'https://core.watchout.tw'
     } else {
