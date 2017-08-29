@@ -6,7 +6,7 @@ var links = {
       custom: 'https://watchout.backme.tw/checkout/332/2688'
     },
     ask: {
-      direct: 'https://watchout.backme.tw/checkout/332/1567'
+      direct: 'https://watchout.backme.tw/checkout/332/2686'
     }
   },
   contact: 'https://watchout.tw/contact'
