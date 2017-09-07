@@ -201,6 +201,10 @@ button:not([class^="el"]):not(.btn-prev):not(.btn-next) { // btn-prev btn-next i
     background: $color-park;
     border-color: $color-park-darker;
   }
+  &.lab {
+    background: $color-lab;
+    border-color: $color-lab-darker;
+  }
   &.floating {
     @include shadow-minimum;
     &:hover {
@@ -388,6 +392,9 @@ input[type='checkbox']:not([class^="el"]) {
 .bg-lab-light {
   background-color: rgba($color-lab, 0.25);
 }
+.bg-lab-light-opaque {
+  background-color: $color-lab-light;
+}
 .bg-console {
   background-color: $color-console;
 }
@@ -533,4 +540,80 @@ section {
     font-size: 0.65rem;
     color: $color-secondary-text-grey;
   }
+}
+
+// ancm (annoucement)
+// panel
+// marquee
+.panel {
+  position: relative;
+  max-width: 16rem;
+  margin: 0 1rem 1rem 0;
+  padding: 1rem;
+  cursor: pointer;
+  @include shadow-minimum;
+  &:hover {
+    @include shadow;
+  }
+
+  > .panel-heading {
+    @include font-serif;
+    font-size: 0.875rem;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  > .panel-action {
+    margin-top: 1rem;
+    text-align: center;
+  }
+}
+.panel-wrapper-center {
+  > .panel {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.contain-underline-text {
+  > span {
+    padding-bottom: 2px;
+    border-bottom: 2px black solid;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(-100%)
+  }
+}
+.marquee {
+  position: relative;
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  overflow: hidden;
+
+  > .content {
+    position: absolute;
+    display: block;
+    width: auto;
+    padding-left: 100%;
+    white-space: nowrap;
+    overflow: visible;
+    animation: marquee 8s linear infinite;
+  }
+}
+
+.ancm-wrapper {
+  position: absolute;
+  top: $navbar-height;
+  left: 0;
+  margin-top: 1rem;
+  width: 100%;
+  z-index: $z-fixed;
 }
