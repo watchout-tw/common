@@ -389,6 +389,9 @@ input[type='checkbox']:not([class^="el"]) {
 .bg-lab {
   background-color: $color-lab;
 }
+.bg-lab-ninetyfive {
+  background-color: rgba($color-lab, 0.95);
+}
 .bg-lab-light {
   background-color: rgba($color-lab, 0.25);
 }

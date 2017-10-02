@@ -3,7 +3,8 @@ var links = {
   support: {
     general: 'https://watchout.tw/#support',
     watchout: {
-      custom: 'https://watchout.backme.tw/checkout/332/2688'
+      custom: 'https://watchout.backme.tw/checkout/332/2688',
+      direct: 'https://watchout.backme.tw/checkout/332/2686'
     },
     ask: {
       direct: 'https://watchout.backme.tw/checkout/332/2686'

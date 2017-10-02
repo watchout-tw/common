@@ -36,6 +36,16 @@ const supportPackages = {
     ],
     image: 'farmer_hat',
     button: '支持沃草，成為草民'
+  },
+  lab: {
+    channel: 'lab',
+    link: dataStore.links.support.watchout.direct,
+    text: [
+      '更多法案拆解、議事紀錄分析',
+      '需要你的幫助。'
+    ],
+    image: 'pitcher',
+    button: '支持沃草，灌溉議題'
   }
 }
 
