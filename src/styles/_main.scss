@@ -1,3 +1,11 @@
+// Fonts
+
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+@import url('https://watchout.tw/fonts/century/styles.css');
+@import url('https://watchout.tw/fonts/circular-pro/styles.css');
+@import url('https://watchout.tw/fonts/noto-serif-patch/styles.css');
+@import url('https://watchout.tw/try-try-fonts/sf-pro-text/stylesheet.css');
+
 // Bootstrap partial import
 
 @import '~bootstrap/scss/utilities';
@@ -9,6 +17,7 @@
 // General override
 
 html, body {
+  font-family: $font-sans-serif;
   font-size: 16px;
 }
 button, input, optgroup, select, textarea {
