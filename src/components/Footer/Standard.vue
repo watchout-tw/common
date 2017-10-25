@@ -71,6 +71,10 @@ var cluster = [
         link: 'https://ask.watchout.tw/'
       },
       {
+        title: '議題實驗室',
+        link: 'https://lab.watchout.tw/'
+      },
+      {
         title: '公民學院',
         link: 'https://citizenedu.tw/'
       }
