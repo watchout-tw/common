@@ -3,7 +3,9 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-// Colors
+// Solid colors
+
+$color-filler: #efefef;
 
 $color-watchout: #50E3C2;
 $color-park: #FFB55D;
@@ -43,6 +45,10 @@ $color-modal-mask-more-transparent: rgba(white, 0.32);
 
 $color-code: blue;
 $color-code-background: rgba(blue, 0.13);
+
+// Transparent colors
+
+$color-lab-almost-white: rgba($color-lab, 0.13);
 
 // Typography
 

@@ -72,6 +72,9 @@ h3 {
 }
 h4 {
   font-size: 1.5rem;
+  &.medium {
+    font-size: 1.25rem;
+  }
   &.small {
     font-size: 1.125rem;
     font-weight: bold;
@@ -82,6 +85,20 @@ h5 {
   &.small {
     font-size: 1rem;
     font-weight: bold;
+  }
+}
+h3, h4, h5 {
+  &.body-style {
+    line-height: 1.5;
+    font-family: $font-sans-serif;
+    font-weight: normal;
+    @include font-no-smoothing;
+  }
+  &.body-style-bold {
+    line-height: 1.5;
+    font-family: $font-sans-serif;
+    font-weight: bold;
+    @include font-no-smoothing;
   }
 }
 code {
@@ -156,6 +173,13 @@ p.note {
     font-size: 1.5rem;
     font-weight: 300;
   }
+}
+
+.font-size-body {
+  font-size: 1rem;
+}
+.font-size-smaller {
+  font-size: 0.875rem;
 }
 
 // List
@@ -521,11 +545,35 @@ section {
     margin-left: auto;
     margin-right: auto;
   }
+  &.body-center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 18rem;
+    @include bp-md-up {
+      width: 24rem;
+    }
+  }
+  &.relaxed {
+    line-height: 1.75;
+  }
 
   > p:last-child {
     margin-bottom: 0;
   }
+  > ul,
+  > ol {
+    margin: 1rem 0;
+  }
+  > blockquote {
+    > p:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
+.paragraphs-no-margin {
+  margin: 0;
+}
+
 .buttons {
   > button,
   > a.button-wrapper {
@@ -567,18 +615,17 @@ section {
   &:hover {
     @include shadow;
   }
-
-  > .panel-heading {
-    @include font-serif;
-    font-size: 0.875rem;
-    font-weight: bold;
-    line-height: 1;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
   > .panel-action {
     margin-top: 1rem;
     text-align: center;
+  }
+
+  &.panel-no-action {
+    cursor: default;
+
+    > .panel-action {
+      display: none;
+    }
   }
 }
 .panel-wrapper-center {
@@ -588,11 +635,32 @@ section {
   }
 }
 
-.contain-underline-text {
+.contain-underline-text { // FIXME: to be deprecated
   > span {
     padding-bottom: 2px;
     border-bottom: 2px black solid;
   }
+}
+.section-title-underline,
+.section-title-underline-small,
+.section-title-underline-tiny {
+  font-weight: bold;
+  > span {
+    display: inline-block;
+    border-bottom: 2px black solid;
+  }
+}
+.section-title-underline {
+  font-size: 1rem;
+  line-height: 1.125rem;
+}
+.section-title-underline-small {
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+}
+.section-title-underline-tiny {
+  font-size: 0.75rem;
+  line-height: 0.875rem;
 }
 
 @keyframes marquee {
