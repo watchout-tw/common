@@ -1,12 +1,10 @@
 <template>
 <nav class="navbar sticky-top d-flex flex-row" :class="channel.classes.bg">
-    <a class="navbar-brand" :class="channelButtonClasses" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
+    <router-link class="navbar-brand" :class="channelButtonClasses" :to="{ path: '/' }"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></router-link>
     <el-menu v-if="menu" :router="true" :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-      <el-submenu v-for="(group, groupIndex) in menu" :index="root + group.id" :key="group.id">
+      <el-submenu v-for="group in menu" :index="group.id" :key="group.id">
         <template slot="title">{{ group.name }}</template>
-        <el-menu-item v-for="(page, index) of group.pages" :index="root + page.id" :key="page.id">
-          <router-link :to="{ name: page.routes.list.name }">{{ page.title }}</router-link>
-        </el-menu-item>
+        <el-menu-item v-for="page of group.pages" :index="page.basePath" :key="page.basePath">{{ page.title }}</el-menu-item>
       </el-submenu>
     </el-menu>
     <a class="navbar-button" :class="identityButtonClasses" id="navbar-identity" @click.self="toggleModalAuth"></a>
@@ -53,7 +51,7 @@ export default {
     }
   },
   mounted() {
-    console.log('%c' + this.channel.id.toUpperCase(), 'font-weight:bold')
+    console.log('Navigation mounted')
   },
   methods: {
     handleSelect(key, keyPath) {
