@@ -194,15 +194,13 @@ export default {
 // Footer
 footer.standard {
   padding-top: 8rem;
-  background: white;
-  z-index: 1031;
+  z-index: $z-below-nav;
 
   > .land {
     position: relative;
     display: block;
     margin: 0 auto;
     width: 100%;
-    background-color: white;
     > .green,
     > .soil > .light,
     > .soil > .dark,
