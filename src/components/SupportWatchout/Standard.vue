@@ -78,6 +78,11 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
+  @include bp-sm-up {
+    width: $bp-sm;
+  }
+  left: 50%;
+  transform: translateX(-50%);
   z-index: $z-fixed;
 
   > .panel {
@@ -85,7 +90,7 @@ export default {
     position: relative;
     display: block;
     width: 100%;
-    max-width: $bp-sm;
+    max-width: none;
     padding: 0.75rem 1rem;
     margin: 0 auto;
 
