@@ -1,4 +1,4 @@
-import NavigationWithIdentity from '~/src/component/Hello'
+import Hello from '~/src/component/Hello'
 
 const Common = {
   install (Vue, params = {}) {
