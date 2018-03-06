@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'hello'
-  data() {
+  name: 'hello',
+  data () {
     return {
       message: 'Hello.'
     }

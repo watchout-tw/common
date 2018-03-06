@@ -1,13 +1,12 @@
-import Hello from '~/src/component/Hello'
+import Hello from './components/Hello.vue'
 
 const Common = {
-  install (Vue, params = {}) {
+  install (Vue, options) {
     if (this.installed) {
       return
     }
 
     this.installed = true
-    this.params = params
 
     Vue.component('hello', Hello)
   }
