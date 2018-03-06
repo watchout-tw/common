@@ -2,6 +2,7 @@
   "name": "common",
   "version": "0.0.1",
   "description": "A common library for all of Watchout Commons.",
+  "main": "docs/common.js",
   "author": "Watchout <dev@watchout.tw>",
   "private": true,
   "scripts": {
