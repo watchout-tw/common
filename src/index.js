@@ -1,14 +1,10 @@
 import Hello from './components/Hello.vue'
+import NavigationSimple from './components/Navigation/Simple.vue'
 
 const Common = {
   install (Vue, options) {
-    if (this.installed) {
-      return
-    }
-
-    this.installed = true
-
     Vue.component('hello', Hello)
+    Vue.component('navigationsimple', NavigationSimple)
   }
 }
 
