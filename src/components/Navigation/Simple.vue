@@ -1,6 +1,6 @@
 <template>
-<nav class="navbar sticky-top navbar-light" :class="channel.classes.bg">
-  <a class="navbar-brand" :href="channel.links.home"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></a>
+<nav class="navbar sticky-top d-flex flex-row" :class="channel.classes.bg">
+  <router-link class="navbar-brand" :class="channelButtonClasses" :to="{ path: '/' }"><img :src="channel.asset.logoWithType.regular.src" class="logo-type" :style="channel.asset.logoWithType.regular.style"/></router-link>
 </nav>
 </template>
 
