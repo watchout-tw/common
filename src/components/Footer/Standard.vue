@@ -44,18 +44,6 @@ var social = [
     image: 'https://graph.facebook.com/watchout.tw/picture?type=large',
     message: '追蹤我們的最新動態！',
     link: 'https://facebook.com/watchout.tw/'
-  },
-  {
-    type: 'LINE',
-    image: 'https://watchout.tw/asset/social/LINE/goodfriend.png',
-    message: '阿草好朋友',
-    link: 'https://store.line.me/stickershop/product/1024870/zh-Hant'
-  },
-  {
-    type: 'LINE',
-    image: 'https://watchout.tw/asset/social/LINE/goodcitizen.png',
-    message: '阿草督督好',
-    link: 'https://store.line.me/stickershop/product/1224270/zh-Hant'
   }
 ]
 var cluster = [
@@ -65,6 +53,10 @@ var cluster = [
       {
         title: '國會無雙',
         link: 'https://musou.tw/'
+      },
+      {
+        title: '媒體實驗',
+        link: 'https://musou.watchout.tw/'
       },
       {
         title: '給問擂台',
